@@ -7,7 +7,9 @@ import QuestionList from './QuestionList.js'
 import SurveyPage from './SurveyPage.js'
 import QuestionStats from './QuestionStats.js'
 
+
 function App() {
+const pizzaQuestion = {query: 'Pizza or Tacos', answerA: 'Pizza', answerB: 'Tacos', price: 5}
 
   const user = {name: 'Gabe', age: 29, image: 'placeholder', username: "gchaz", password: "abc123"}
   const spaceQuestion = {query: 'Star Wars or Star Trek', answerA: 'Star Trek', answerB: 'Star Wars', price: 5}
@@ -19,13 +21,15 @@ function App() {
 
   return (
     <div className="App">
-      <header>
+      <nav>
        Dataminr
-      </header>
+      </nav>
       <Profile user = {user} />
       <AddQuestion onSubmit={onSubmit}/>
       <Signup user = {user} />
       <Login user = {user} />
+      <SurveyPage questionStats = {pizzaQuestion} />
+      {/* <QuestionList queryArr = {queryArr} />  */}
     </div>
   );
 }
