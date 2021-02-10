@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Profile from './Profile.js'
 import AddQuestion from './AddQuestion.js'
 import Login from './Login.js'
@@ -7,13 +7,15 @@ import QuestionList from './QuestionList.js'
 import SurveyPage from './SurveyPage.js'
 import QuestionStats from './QuestionStats.js'
 
-
-
-
 function App() {
 
-  const user = {name: 'Gabe', age: 29, image: 'placeholder'}
-  console.log('app log', user)
+  const user = {name: 'Gabe', age: 29, image: 'placeholder', username: "gchaz", password: "abc123"}
+  const spaceQuestion = {query: 'Star Wars or Star Trek', answerA: 'Star Trek', answerB: 'Star Wars', price: 5}
+  const [questions, setQuestions] = useState([spaceQuestion])
+
+  const onSubmit = (newQuestion) => {
+    setQuestions([...questions, newQuestion])
+  }
 
   return (
     <div className="App">
@@ -21,6 +23,9 @@ function App() {
        Dataminr
       </header>
       <Profile user = {user} />
+      <AddQuestion onSubmit={onSubmit}/>
+      <Signup user = {user} />
+      <Login user = {user} />
     </div>
   );
 }
