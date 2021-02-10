@@ -8,19 +8,22 @@ import SurveyPage from './SurveyPage.js'
 import QuestionStats from './QuestionStats.js'
 
 
-
-
 function App() {
+const pizzaQuestion = {query: 'Pizza or Tacos', answerA: 'Pizza', answerB: 'Tacos', price: 5}
+const spaceQuestion = {query: 'Star Wars or Star Trek', answerA: 'Star Trek', answerB: 'Star Wars', price: 5}
 
+const queryArr = [pizzaQuestion, spaceQuestion]
   const user = {name: 'Gabe', age: 29, image: 'placeholder'}
-  console.log('app log', user)
+
 
   return (
     <div className="App">
-      <header>
+      <nav>
        Dataminr
-      </header>
-      <Profile user = {user} />
+      </nav>
+      {/* <SurveyPage questionStats = {pizzaQuestion} /> */}
+      {/* <Profile user = {user} /> */}
+      <QuestionList queryArr = {queryArr} /> 
     </div>
   );
 }
