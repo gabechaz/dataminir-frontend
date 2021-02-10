@@ -21,9 +21,9 @@ const queryArr = [pizzaQuestion, spaceQuestion]
       <nav>
        Dataminr
       </nav>
-      {/* <SurveyPage questionStats = {pizzaQuestion} /> */}
+      <SurveyPage questionStats = {pizzaQuestion} />
       {/* <Profile user = {user} /> */}
-      <QuestionList queryArr = {queryArr} /> 
+      {/* <QuestionList queryArr = {queryArr} />  */}
     </div>
   );
 }

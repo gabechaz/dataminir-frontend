@@ -5,12 +5,20 @@ function SurveyPage ({questionStats: {query, answerA, answerB, price}}) {
     return (
         <div id='question-box'>
             <h1 id='question'>{query}</h1>
-            <label for='answer-a'>{answerA}</label>
-            <input id='answer-a' type='radio' name='answer-a' className='answer' />
+            
+            <label >{answerA}
+            <input id='answer-a' value='option1' type='radio' name='answer-a' className='answer' />
+            </label>
+           
             <br />
-            <label for='answer-b'>{answerB}</label>
-            <input id='answer-b' type='radio' name='answer-b' className='answer' />
-         
+            
+            <label>{answerB}
+            <input id='answer-b' value='option2' type='radio' name='answer-b' className='answer' />
+            </label>
+            <br />
+            <label> 
+            <input type='submit'></input>
+            </label>
             <h5>Price: {price}</h5>
         </div>
     )
