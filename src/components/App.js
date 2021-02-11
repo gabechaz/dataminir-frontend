@@ -1,13 +1,14 @@
 import { Route, Switch } from "react-router-dom";
-import React, { useState, useEffect } from "react";
-import Profile from "./Profile.js";
-import AddQuestion from "./AddQuestion.js";
-import Login from "./Login.js";
-import Signup from "./Signup.js";
-import QuestionList from "./QuestionList.js";
-import SurveyPage from "./SurveyPage.js";
-import QuestionStats from "./QuestionStats.js";
-import NavBar from "./NavBar";
+import React, { useState, useEffect } from 'react'
+import Profile from './Profile.js'
+import AddQuestion from './AddQuestion.js'
+import Login from './Login.js'
+import Signup from './Signup.js'
+import QuestionList from './QuestionList.js'
+import SurveyPage from './SurveyPage.js'
+import SurveyList from './SurveyList.js'
+import QuestionStats from './QuestionStats.js'
+import NavBar from './NavBar'
 
 function App() {
   // Fetch Requests
@@ -15,8 +16,9 @@ function App() {
   useEffect(() => {
     fetch("http://localhost:3000/questions")
       .then((response) => response.json())
-      .then((questionData) => setQuestions(questionData));
-  }, []);
+      .then((questionData) => { setQuestions(questionData)})
+  }, [])
+
 
   const addNewUser = (newSignup) => {
     fetch("http://localhost:3000/users", {
@@ -30,6 +32,10 @@ function App() {
       .then((newSignup) => setUsers([...users, newSignup]));
   };
 
+  // State Variables 
+  const [currentUser, setCurentUser] = useState(null)
+  const [questions, setQuestions] = useState([spaceQuestion])
+  const [users, setUsers] = useState([user]);
   const addNewQuestion = (newQuestion) => {
     fetch("http://localhost:3000/questions", {
       method: "POST",
@@ -41,6 +47,7 @@ function App() {
       .then((r) => r.json())
       .then((newQuestion) => setQuestions([...questions, newQuestion]));
   };
+
 
   // State Variables
   const [currentUser, setCurentUser] = useState(null);
@@ -70,9 +77,13 @@ function App() {
         <Route exact path="/users/signup">
           <Signup onSubmit={addNewUser} />
         </Route>
-        <Route exact path="/users/login">
-          <Login onSubmit={addNewSession} />
+        <Route exact path='/users/login'>
+          <Login  />
         </Route>
+        <Route exact path='/surveys/:id'>
+          <SurveyPage />
+        </Route>
+
       </Switch>
     </div>
   );
