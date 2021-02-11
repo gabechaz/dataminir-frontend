@@ -1,86 +1,79 @@
-
 import { Route, Switch } from "react-router-dom";
-import React, { useState, useEffect } from 'react'
-import Profile from './Profile.js'
-import AddQuestion from './AddQuestion.js'
-import Login from './Login.js'
-import Signup from './Signup.js'
-import QuestionList from './QuestionList.js'
-import SurveyPage from './SurveyPage.js'
-import QuestionStats from './QuestionStats.js'
-import NavBar from './NavBar'
+import React, { useState, useEffect } from "react";
+import Profile from "./Profile.js";
+import AddQuestion from "./AddQuestion.js";
+import Login from "./Login.js";
+import Signup from "./Signup.js";
+import QuestionList from "./QuestionList.js";
+import SurveyPage from "./SurveyPage.js";
+import QuestionStats from "./QuestionStats.js";
+import NavBar from "./NavBar";
 
 function App() {
-
-
-// Fetch Requests
+  // Fetch Requests
 
   useEffect(() => {
     fetch("http://localhost:3000/questions")
       .then((response) => response.json())
-      .then((questionData) => setQuestions(questionData))
-  }, [])
+      .then((questionData) => setQuestions(questionData));
+  }, []);
 
-
-  // Variable Declarations
-  const user = {name: 'Gabe', age: 29, image: 'placeholder', username: "gchaz", password: "abc123"}
-  const spaceQuestion = {query: 'Star Wars or Star Trek', answerA: 'Star Trek', answerB: 'Star Wars', price: 5}
-  const pizzaQuestion = {
-    query: "Pizza or Tacos",
-    answerA: "Pizza",
-    answerB: "Tacos",
-    price: 5,
-  };
-  
-
-  // State Variables 
-  const [currentUser, setCurentUser] = useState(null)
-  const [questions, setQuestions] = useState([spaceQuestion])
-  const [loggedIn, setLoggedIn] = useState(false)
-  const [users, setUsers] = useState([user]);
-  const [sessions, setSessions] = useState([])
-  const addNewQuestion = (newQuestion) => {
-    setQuestions([...questions, newQuestion]);
-  };
   const addNewUser = (newSignup) => {
-    setUsers([...users, newSignup]);
+    fetch("http://localhost:3000/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newSignup),
+    })
+      .then((r) => r.json())
+      .then((newSignup) => setUsers([...users, newSignup]));
   };
+
+  const addNewQuestion = (newQuestion) => {
+    fetch("http://localhost:3000/questions", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newQuestion),
+    })
+      .then((r) => r.json())
+      .then((newQuestion) => setQuestions([...questions, newQuestion]));
+  };
+
+  // State Variables
+  const [currentUser, setCurentUser] = useState(null);
+  // const [loggedIn, setLoggedIn] = useState(false);
+  const [sessions, setSessions] = useState([]);
+  const [questions, setQuestions] = useState([]);
+  const [users, setUsers] = useState([]);
+
   const addNewSession = (newSession) => {
-    setSessions([...sessions, newSession])
-  }
+    setSessions([...sessions, newSession]);
+  };
 
-
-    // Event Listeners
-    const onSubmit = (newQuestion) => {
-      setQuestions([...questions, newQuestion])
-    }
+  // Event Listeners
   return (
     <div className="App">
-      <NavBar loggedIn={loggedIn} />
+      <NavBar loggedIn={currentUser} />
       <Switch>
-        <Route exact path='/questions/survey'> 
-          <SurveyPage questionStats = {pizzaQuestion} />
-      </Route>
-        <Route exact path='/users/profile' >
-        <Profile user = {user} />
+        <Route exact path="/users/profile">
+          <Profile />
         </Route>
-        <Route exact path='/questions'>
-          <QuestionList queryArr = {questions} /> 
+        <Route exact path="/questions">
+          <QuestionList queryArr={questions} />
         </Route>
-        <Route exact path='/questions/add-question'>
-          <AddQuestion onSubmit={addNewQuestion}/>
+        <Route exact path="/questions/add-question">
+          <AddQuestion onSubmit={addNewQuestion} />
         </Route>
-        <Route exact path='/users/signup'>
+        <Route exact path="/users/signup">
           <Signup onSubmit={addNewUser} />
         </Route>
-        <Route exact path='/users/login'>
-          <Login onSubmit = {addNewSession} />
-        </Route>
-        <Route exact path='/questions/survey-page'>
-          <SurveyPage questionStats = {pizzaQuestion} />
+        <Route exact path="/users/login">
+          <Login onSubmit={addNewSession} />
         </Route>
       </Switch>
-
     </div>
   );
 }

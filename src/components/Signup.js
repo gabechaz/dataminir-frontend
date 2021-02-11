@@ -3,7 +3,11 @@ import React, { useState } from "react";
 function Signup ({ onSubmit }) {
   const [name, setName] = useState("")
   const [age, setAge] = useState("")
-  const [image, setImage] = useState("")
+  const [ethnicity, setEthnicity] = useState("")
+  const [genderIdentity, setGenderIdentity] = useState("")
+  const [politicalParty, setPoliticalParty] = useState("")
+  const [location, setLocation] = useState("")
+  const [religion, setReligion] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
 
@@ -15,8 +19,24 @@ function Signup ({ onSubmit }) {
     setAge(event.target.value)
   }
 
-  const handleImage = (event) => {
-    setImage(event.target.value)
+  const handleEthnicity = (event) => {
+    setEthnicity(event.target.value)
+  }
+
+  const handleGenderIdentity = (event) => {
+    setGenderIdentity(event.target.value)
+  }
+
+  const handlePoliticalParty = (event) => {
+    setPoliticalParty(event.target.value)
+  }
+
+  const handleLocation = (event) => {
+    setLocation(event.target.value)
+  }
+
+  const handleReligion = (event) => {
+    setReligion(event.target.value)
   }
 
   const handleUsername = (event) => {
@@ -27,9 +47,10 @@ function Signup ({ onSubmit }) {
     setPassword(event.target.value)
   }
 
+
   const handleSubmit = (event) => {
     event.preventDefault()
-    const newSignup = {name, age, image, username, password}
+    const newSignup = {name, age, ethnicity, genderIdentity, politicalParty, location, religion, username, password}
     onSubmit(newSignup)
   }
 
@@ -37,11 +58,15 @@ function Signup ({ onSubmit }) {
     <div>
       <h2>Signup Page</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Name" value={name} onChange={handleName} />
+        <input type="text" name="name" placeholder="Name *required" required value={name} onChange={handleName} />
         <input type="text" name="age" placeholder="Age" value={age} onChange={handleAge} />
-        <input type="text" name="image" placeholder="Profile Image" value={image} onChange={handleImage}/>
-        <input type="text" name="username" placeholder="Username" value={username} onChange={handleUsername}/>
-        <input type="text" name="password" placeholder="Password" value={password} onChange={handlePassword}/>
+        <input type="text" name="ethnicity" placeholder="Ethnicity" value={ethnicity} onChange={handleEthnicity}/>
+        <input type="text" name="genderIdentity" placeholder="Gender Identity" value={genderIdentity} onChange={handleGenderIdentity}/>
+        <input type="text" name="politicalParty" placeholder="Political Party" value={politicalParty} onChange={handlePoliticalParty}/>
+        <input type="text" name="location" placeholder="Location" value={location} onChange={handleLocation}/>
+        <input type="text" name="religion" placeholder="Religion" value={religion} onChange={handleReligion}/>
+        <input type="text" name="username" placeholder="Username *required" required value={username} onChange={handleUsername}/>
+        <input type="text" name="password" placeholder="Password *required" required value={password} onChange={handlePassword}/>
         <button type="submit">Signup</button>
       </form>
     </div>
