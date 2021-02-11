@@ -13,37 +13,46 @@ import NavBar from './NavBar'
 function App() {
 const pizzaQuestion = {query: 'Pizza or Tacos', answerA: 'Pizza', answerB: 'Tacos', price: 5}
 
+
+  // Variable Declarations
   const user = {name: 'Gabe', age: 29, image: 'placeholder', username: "gchaz", password: "abc123"}
   const spaceQuestion = {query: 'Star Wars or Star Trek', answerA: 'Star Trek', answerB: 'Star Wars', price: 5}
-  const [questions, setQuestions] = useState([spaceQuestion])
+  
 
-  const onSubmit = (newQuestion) => {
-    setQuestions([...questions, newQuestion])
-  }
-
+  // State Variables ////////////////////////////
   const [currentUser, setCurentUser] = useState(user)
+  const [questions, setQuestions] = useState([spaceQuestion])
+  const [loggedIn, setLoggedIn] = useState(false)
 
+
+    // Event Listeners
+    const onSubmit = (newQuestion) => {
+      setQuestions([...questions, newQuestion])
+    }
   return (
     <div className="App">
-      <NavBar setCurentUser={setCurentUser} />
+      <NavBar loggedIn={loggedIn} />
       <Switch>
-        <Route path='/questions/survey'> 
+        <Route exact path='/questions/survey'> 
           <SurveyPage questionStats = {pizzaQuestion} />
       </Route>
-        <Route path='/users/profile' >
+        <Route exact path='/users/profile' >
         <Profile user = {user} />
         </Route>
-        <Route path='/questions'>
-          <QuestionList queryArr = {queryArr} /> 
+        <Route exact path='/questions'>
+          <QuestionList queryArr = {questions} /> 
         </Route>
-        <Route path='/questions/add-question'>
+        <Route exact path='/questions/add-question'>
           <AddQuestion onSubmit={onSubmit}/>
         </Route>
-        <Route path='/users/signup'>
+        <Route exact path='/users/signup'>
           <Signup user = {user} />
         </Route>
-        <Route path='/users/login'>
+        <Route exact path='/users/login'>
           <Login user = {user} />
+        </Route>
+        <Route exact path='/questions/survey-page'>
+          <SurveyPage questionStats = {pizzaQuestion} />
         </Route>
       </Switch>
 
