@@ -7,6 +7,7 @@ import Login from './Login.js'
 import Signup from './Signup.js'
 import QuestionList from './QuestionList.js'
 import SurveyPage from './SurveyPage.js'
+import SurveyList from './SurveyList.js'
 import QuestionStats from './QuestionStats.js'
 import NavBar from './NavBar'
 
@@ -18,7 +19,7 @@ function App() {
   useEffect(() => {
     fetch("http://localhost:3000/questions")
       .then((response) => response.json())
-      .then((questionData) => setQuestions(questionData))
+      .then((questionData) => { setQuestions(questionData)})
   }, [])
 
 
@@ -36,18 +37,14 @@ function App() {
   // State Variables 
   const [currentUser, setCurentUser] = useState(null)
   const [questions, setQuestions] = useState([spaceQuestion])
-  const [loggedIn, setLoggedIn] = useState(false)
   const [users, setUsers] = useState([user]);
-  const [sessions, setSessions] = useState([])
   const addNewQuestion = (newQuestion) => {
     setQuestions([...questions, newQuestion]);
   };
   const addNewUser = (newSignup) => {
     setUsers([...users, newSignup]);
   };
-  const addNewSession = (newSession) => {
-    setSessions([...sessions, newSession])
-  }
+
 
 
     // Event Listeners
@@ -56,7 +53,7 @@ function App() {
     }
   return (
     <div className="App">
-      <NavBar loggedIn={loggedIn} />
+      <NavBar loggedIn={currentUser} />
       <Switch>
         <Route exact path='/questions/survey'> 
           <SurveyPage questionStats = {pizzaQuestion} />
@@ -74,11 +71,12 @@ function App() {
           <Signup onSubmit={addNewUser} />
         </Route>
         <Route exact path='/users/login'>
-          <Login onSubmit = {addNewSession} />
+          <Login  />
         </Route>
-        <Route exact path='/questions/survey-page'>
-          <SurveyPage questionStats = {pizzaQuestion} />
+        <Route exact path='/surveys/:id'>
+          <SurveyPage />
         </Route>
+
       </Switch>
 
     </div>
