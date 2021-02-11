@@ -1,12 +1,14 @@
 import React from "react"; 
-
-function QuestionCard ({questionStats: {query, price, answerA, answerB}}) {
+import { Link } from "react-router-dom";
+function QuestionCard ({questionStats: {question, reward, optionA, optionB, id}}) {
     
     return (
 <div>
-        <h1>{query}</h1>
-        <h3>Price: {price}</h3>
+        <h1>{question}</h1>
+        <h3>Reward: {reward}</h3>
+        <Link to='/questions/survey'>
         <button>ANSWER</button>
+        </Link>
 </div>
     )
 

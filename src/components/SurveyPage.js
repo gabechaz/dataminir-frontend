@@ -7,13 +7,13 @@ function SurveyPage ({questionStats: {query, answerA, answerB, price}}) {
             <h1 id='question'>{query}</h1>
             
             <label >{answerA}
-            <input id='answer-a' value='option1' type='radio' name='answer-a' className='answer' />
+            <input id='answer-a' value='option1' type='radio' name='answer' className='answer' />
             </label>
            
             <br />
             
             <label>{answerB}
-            <input id='answer-b' value='option2' type='radio' name='answer-b' className='answer' />
+            <input id='answer-b' value='option2' type='radio' name='answer' className='answer' />
             </label>
             <br />
             <label> 

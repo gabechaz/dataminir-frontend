@@ -6,7 +6,7 @@ import QuestionCard from './QuestionCard.js'
 function QuestionList ({queryArr}) {
  
     const questions = queryArr.map(query => {
-        return <QuestionCard key = {query.query} questionStats = {query} />
+        return <QuestionCard key = {query.id} questionStats = {query} />
     })
 return (
 <div>
