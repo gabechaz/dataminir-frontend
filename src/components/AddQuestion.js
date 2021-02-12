@@ -1,6 +1,7 @@
 import React, { useState }from "react"; 
 
-function AddQuestion ({ onSubmit })  {
+function AddQuestion ( props )  {
+ 
   const [question, setQuestion] = useState("")
   const [option1, setOption1] = useState("")
   const [option2, setOption2] = useState("")
@@ -9,7 +10,7 @@ function AddQuestion ({ onSubmit })  {
   const handleSubmit = (event) => {
     event.preventDefault()
     const newQuestion = {question, option1, option2, reward}
-    onSubmit(newQuestion)
+    // onSubmit(newQuestion)
   }
 
   const handleQuestion = (event) => {

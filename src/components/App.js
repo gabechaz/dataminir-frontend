@@ -11,11 +11,7 @@ import QuestionStats from './QuestionStats.js'
 import NavBar from './NavBar'
 
 function App() {
-  // State Variables
-  const [currentUser, setCurrentUser] = useState(null);
-  // const [loggedIn, setLoggedIn] = useState(false);
-  const [questions, setQuestions] = useState([]);
-  const [users, setUsers] = useState([]);
+
   // Fetch Requests
 
   useEffect(() => {
@@ -57,13 +53,10 @@ function App() {
       .then((newQuestion) => setQuestions([...questions, newQuestion]));
   };
 
-<<<<<<< HEAD
 
-=======
-  const addNewCurrentUser = (newCurrentUser) => {
-    setCurrentUser(newCurrentUser);
-  };
->>>>>>> 3ea967b97c6c4d4a1ee7b4ed37c58543a120f1e7
+  // const addNewCurrentUser = (newCurrentUser) => {
+  //   setCurrentUser(newCurrentUser);
+  // };
 
   // Event Listeners
   return (
@@ -77,14 +70,15 @@ function App() {
           <QuestionList queryArr={questions} />
         </Route>
         <Route>
-          <AddQuestion onSubmit={addNewQuestion} />
+          <AddQuestion  />
+          {/* onSubmit={addNewQuestion} */}
         </Route>
         <Route exact path="/users/signup">
           <Signup onSubmit={addNewUser} />
         </Route>
-        <Route exact path='/users/login'>
+        {/* <Route exact path='/users/login'>
           <Login  onSubmit={addNewCurrentUser}/>
-        </Route>
+        </Route> */}
         <Route exact path='/surveys/:id'>
           <SurveyPage currentUser ={currentUser} />
         </Route>
