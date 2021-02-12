@@ -1,4 +1,5 @@
 import React, { useState } from "react"; 
+import { useHistory } from "react-router-dom";
 
 function Signup ({ onSubmit }) {
   const [name, setName] = useState("")
@@ -47,11 +48,13 @@ function Signup ({ onSubmit }) {
     setPassword(event.target.value)
   }
 
+  const history = useHistory()
 
   const handleSubmit = (event) => {
     event.preventDefault()
     const newSignup = {name, age, ethnicity, genderIdentity, politicalParty, location, religion, username, password}
     onSubmit(newSignup)
+    history.push('/questions')
   }
 
   return (
