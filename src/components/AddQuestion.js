@@ -6,6 +6,11 @@ function AddQuestion ( props )  {
   const [option1, setOption1] = useState("")
   const [option2, setOption2] = useState("")
   const [reward, setReward] = useState("")
+  const [isFormShown, setIsFormShown] = useState(false)
+
+  const handleIsFormShown = () => {
+    setIsFormShown((isFormShown) => !isFormShown);
+  }
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -32,16 +37,17 @@ function AddQuestion ( props )  {
     return (
       <div>
         <h2>Add a New Question</h2>
-        <form onSubmit={handleSubmit}>
+        {isFormShown && 
+       (<form onSubmit={handleSubmit}>
           <input type="text" name="query" placeholder="Question" value={question} onChange={handleQuestion}/>
           <input type="text" name="answerA" placeholder="Option1" value={option1} onChange={handleOption1}/>
           <input type="text" name="answerB" placeholder="Option2" value={option2} onChange={handleOption2}/>
           <input type="text" name="reward" placeholder="Reward" value={reward} onChange={handleReward}/>
           <button type="submit">Add Question</button>
-        </form>
+        </form>) }
+        {isFormShown ? null: <button onClick = {handleIsFormShown}>Add A Question</button>}
       </div>
     );
-
 
 }
 
