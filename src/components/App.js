@@ -11,6 +11,11 @@ import QuestionStats from './QuestionStats.js'
 import NavBar from './NavBar'
 
 function App() {
+  // State Variables
+  const [currentUser, setCurrentUser] = useState(null);
+  // const [loggedIn, setLoggedIn] = useState(false);
+  const [questions, setQuestions] = useState([]);
+  const [users, setUsers] = useState([]);
   // Fetch Requests
 
   useEffect(() => {
@@ -32,10 +37,6 @@ function App() {
       .then((newSignup) => setUsers([...users, newSignup]));
   };
 
-  // State Variables 
-  const [currentUser, setCurentUser] = useState(null)
-  const [questions, setQuestions] = useState([spaceQuestion])
-  const [users, setUsers] = useState([user]);
   const addNewQuestion = (newQuestion) => {
     fetch("http://localhost:3000/questions", {
       method: "POST",
@@ -48,16 +49,8 @@ function App() {
       .then((newQuestion) => setQuestions([...questions, newQuestion]));
   };
 
-
-  // State Variables
-  const [currentUser, setCurentUser] = useState(null);
-  // const [loggedIn, setLoggedIn] = useState(false);
-  const [sessions, setSessions] = useState([]);
-  const [questions, setQuestions] = useState([]);
-  const [users, setUsers] = useState([]);
-
-  const addNewSession = (newSession) => {
-    setSessions([...sessions, newSession]);
+  const addNewCurrentUser = (newCurrentUser) => {
+    setCurrentUser(newCurrentUser);
   };
 
   // Event Listeners
@@ -71,14 +64,14 @@ function App() {
         <Route exact path="/questions">
           <QuestionList queryArr={questions} />
         </Route>
-        <Route exact path="/questions/add-question">
+        <Route>
           <AddQuestion onSubmit={addNewQuestion} />
         </Route>
         <Route exact path="/users/signup">
           <Signup onSubmit={addNewUser} />
         </Route>
         <Route exact path='/users/login'>
-          <Login  />
+          <Login  onSubmit={addNewCurrentUser}/>
         </Route>
         <Route exact path='/surveys/:id'>
           <SurveyPage />
