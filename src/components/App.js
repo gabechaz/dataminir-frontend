@@ -32,10 +32,14 @@ function App() {
       .then((newSignup) => setUsers([...users, newSignup]));
   };
 
+    const user = {
+      id: 1,
+
+    }
   // State Variables 
-  const [currentUser, setCurentUser] = useState(null)
-  const [questions, setQuestions] = useState([spaceQuestion])
-  const [users, setUsers] = useState([user]);
+  const [currentUser, setCurentUser] = useState(user)
+  const [questions, setQuestions] = useState([])
+  const [users, setUsers] = useState([]);
   const addNewQuestion = (newQuestion) => {
     fetch("http://localhost:3000/questions", {
       method: "POST",
@@ -49,16 +53,6 @@ function App() {
   };
 
 
-  // State Variables
-  const [currentUser, setCurentUser] = useState(null);
-  // const [loggedIn, setLoggedIn] = useState(false);
-  const [sessions, setSessions] = useState([]);
-  const [questions, setQuestions] = useState([]);
-  const [users, setUsers] = useState([]);
-
-  const addNewSession = (newSession) => {
-    setSessions([...sessions, newSession]);
-  };
 
   // Event Listeners
   return (
@@ -81,7 +75,7 @@ function App() {
           <Login  />
         </Route>
         <Route exact path='/surveys/:id'>
-          <SurveyPage />
+          <SurveyPage currentUser ={currentUser} />
         </Route>
 
       </Switch>
