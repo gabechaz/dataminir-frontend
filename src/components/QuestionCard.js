@@ -10,13 +10,17 @@ function QuestionCard ({questionStats: {question, reward, optionA, optionB, id, 
     }
 
     return (
-<div>
-        <h1>{question}</h1>
-        <h3>Reward: {reward}</h3>
-    
-        <button onClick={answerSurvey}>ANSWER</button>
-    
-</div>
+      <div className="ui centered card">
+        <div className="content">
+          <div className="header">{question}</div>
+        </div>
+        <div className="content">
+          <h4 className="ui sub header">Reward: {reward}</h4>
+        </div>
+        <div className="extra content">
+          <button className="ui button" onClick={answerSurvey}>Answer</button>
+        </div>
+      </div>
     )
 
 }

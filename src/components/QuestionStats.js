@@ -1,14 +1,13 @@
 import React from "react"; 
 
 function QuestionStats ({questionStats: {query, answerA, answerB, price}}) {
-    console.log(query)
     return (
-        <div id='question-box'>
-            <h1 id='question'>{query}</h1>
-            <h3 class='answer'> {answerA}</h3>
-            <h3 class='answer'> {answerB}</h3>
-            <h5>Price: {price}</h5>
-        </div>
+      <div id='question-box'>
+        <h1 id='question'>{query}</h1>
+        <h3 class='answer'> {answerA}</h3>
+        <h3 class='answer'> {answerB}</h3>
+        <h5>Price: {price}</h5>
+      </div>
     )
 }
 
