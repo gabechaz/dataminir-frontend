@@ -1,7 +1,7 @@
 import React, { useState } from "react"; 
 import { useHistory } from "react-router-dom";
 
-function Login ({ onSubmit }) {
+const Login = ({ onSubmit }) => {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState ("")
 
@@ -24,7 +24,6 @@ function Login ({ onSubmit }) {
   
   return (
     <form className="ui form" onSubmit={handleSubmit}>
-      <h2>Login Page</h2>
       <div className="field">
         <label>Username</label>
         <input type="text" name="username" placeholder="Username" value={username} onChange={handleUsername}/>

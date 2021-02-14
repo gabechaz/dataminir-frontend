@@ -16,7 +16,7 @@ function App() {
 
   }
   // State Variables
-  const [currentUser, setCurrentUser] = useState(user);
+  const [currentUser, setCurrentUser] = useState(null);
   // const [loggedIn, setLoggedIn] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [users, setUsers] = useState([]);
@@ -54,13 +54,19 @@ function App() {
   };
 
   const addNewCurrentUser = (newCurrentUser) => {
-    setCurrentUser(newCurrentUser);
+    fetch("http://localhost:3000/login", {
+      method: "POST"
+    })
+      .then((r) => r.json())
+      .then((newUser) => {
+        setCurrentUser(newUser)
+    });
   };
 
   // Event Listeners
   return (
     <div className="App">
-      <NavBar loggedIn={false} />
+      <NavBar currentUser={currentUser} />
       <Switch>
         <Route exact path="/users/profile">
           <Profile />
@@ -73,7 +79,7 @@ function App() {
           <Signup onSubmit={addNewUser} />
         </Route>
         <Route exact path='/users/login'>
-          <Login  onSubmit={addNewCurrentUser}/>
+          <Login  setCurrentUser={setCurrentUser} onSubmit={addNewCurrentUser}/>
         </Route>
         <Route exact path='/surveys/:id'>
           <SurveyPage currentUser ={currentUser} />

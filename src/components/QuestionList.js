@@ -1,21 +1,39 @@
-import React, { useState } from "react"; 
-import QuestionStats from "./QuestionStats.js"
-import SurveyPage from './SurveyPage.js'
-import QuestionCard from './QuestionCard.js'
-import AddQuestion from './AddQuestion.js'
+import React, { useState } from "react";
+import QuestionStats from "./QuestionStats.js";
+import SurveyPage from "./SurveyPage.js";
+import QuestionCard from "./QuestionCard.js";
 
-function QuestionList ({queryArr}) {
+const QuestionList = ({ queryArr }) => {
+  const [questionsIndex, setQuestionsIndex] = useState(0)
+  const questions = queryArr.map((query) => {
+    return <QuestionCard key={query.id} questionStats={query} />;
+  });
 
-    const questions = queryArr.map(query => {
-        return <QuestionCard key = {query.id} questionStats = {query} />
-    })
-  
-return (
-  <div>
-    {questions}
-  </div>
-)
+  const handleBack = () => {
+    setQuestionsIndex(questionsIndex - 1)
+  };
 
-}
+  const handleForward = () => {
+    setQuestionsIndex(questionsIndex + 1)
+  };
 
-export default QuestionList; 
+  return (
+    <div className="ui grid">
+      <div className="two wide centered column"></div>
+      <div className="two wide centered column">
+        <button className="ui icon button" onClick={handleBack}>
+          <i class="angle left icon"></i>
+        </button>
+      </div>
+      <div className="eight wide centered column">{questions[questionsIndex]}</div>
+      <div className="two wide column">
+        <button className="ui icon button" onClick={handleForward}>
+          <i class="angle right icon"></i>
+        </button>
+      </div>
+      <div className="two wide centered column"></div>
+    </div>
+  );
+};
+
+export default QuestionList;
