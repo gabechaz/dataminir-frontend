@@ -28,7 +28,6 @@ function App() {
       .then((questionData) => { setQuestions(questionData)})
   }, [])
 
-
   const addNewUser = (newSignup) => {
     fetch("http://localhost:3000/users", {
       method: "POST",
@@ -62,6 +61,13 @@ function App() {
         setCurrentUser(newUser)
     });
   };
+
+  useEffect(() => {
+    fetch("http://localhost:3000/me")
+      .then((response) => response.json())
+      .then((userData) => { setCurrentUser(userData)})
+  }, [])
+
 
   // Event Listeners
   return (
