@@ -17,7 +17,6 @@ function App() {
   }
   // State Variables
   const [currentUser, setCurrentUser] = useState(user);
-  // const [loggedIn, setLoggedIn] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [users, setUsers] = useState([]);
   // Fetch Requests
@@ -75,6 +74,9 @@ function App() {
         {/* <Route exact path='/users/login'>
           <Login  onSubmit={addNewCurrentUser}/>
         </Route> */}
+        <Route exact path ='/questions/:id' >
+        <QuestionStats />
+        </Route>
         <Route exact path='/surveys/:id'>
           <SurveyPage currentUser ={currentUser} />
         </Route>

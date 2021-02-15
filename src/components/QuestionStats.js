@@ -1,13 +1,50 @@
-import React from "react"; 
+import React, { useState, useEffect } from 'react'
+import { useParams } from "react-router-dom"
 
-function QuestionStats ({questionStats: {query, answerA, answerB, price}}) {
-    console.log(query)
+
+const dummyQuestion = {
+    question: 'PlaceHolder',
+    option1: 'Placeholder',
+    option2: 'Placeholder',
+    reward: 'Placeholder',
+    option_1_count: 'Placeholder',
+    option_2_count: 'Placeholder'
+}
+
+function QuestionStats () {
+    const [activeQuestion,setActiveQuestion] = useState(dummyQuestion)
+   
+    const { id } = useParams()
+    const [activeDemo, setActiveDemo] = useState(null)
+    // useEffect (() => {
+    //     fetch(`http://localhost:3000/questions/${id}`)
+    // .then( res => res.json())
+    // .then(question => setActiveQuestion(question))
+    // }, []
+    // )
+
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/questions/${id}`)
+            .then(r => r.json())
+            .then(data => setActiveQuestion(data))
+            setActiveDemo(option_1_count)
+    }, [])
+    
+    const {question,
+        option1,
+        option2,
+        reward,
+        option_1_count,
+        male_opt_1_count,
+        female_opt_1_count}
+        = activeQuestion
     return (
         <div id='question-box'>
-            <h1 id='question'>{query}</h1>
-            <h3 class='answer'> {answerA}</h3>
-            <h3 class='answer'> {answerB}</h3>
-            <h5>Price: {price}</h5>
+            <h1 id='question'>{question}</h1>
+            <h3 class='answer'> {option1} {activeDemo}%</h3>
+            <h3 class='answer'> {option2} {100 - activeDemo}%</h3>
+            <h5>Price: {reward}</h5>
         </div>
     )
 }

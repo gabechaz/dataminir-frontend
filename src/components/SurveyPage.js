@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
-
+import { useHistory } from "react-router-dom";
 function SurveyPage ({currentUser}) {
     console.log(currentUser)
     const [sponsor, setSponsor] = useState("")
@@ -8,6 +8,7 @@ function SurveyPage ({currentUser}) {
     const { id } = useParams()
     const {reward, creator_id, option1, option2, question} = questionObj
     const [selectedOption, setSelectedOption] = useState('option1')
+    const history = useHistory()
 
     function handleSubmit (e) {
         e.preventDefault()
@@ -26,7 +27,7 @@ function SurveyPage ({currentUser}) {
       })
       .then(res => res.json())
       .then(answer => console.log(answer))
-    
+      history.push(`/questions/${id}`)
     }
 
    
