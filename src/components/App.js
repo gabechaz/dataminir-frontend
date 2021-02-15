@@ -75,7 +75,7 @@ function App() {
       <NavBar currentUser={currentUser} />
       <Switch>
         <Route exact path="/users/profile">
-          <Profile />
+          <Profile currentUser={currentUser}/>
         </Route>
         <Route exact path="/questions">
           <AddQuestion onSubmit={addNewQuestion} />
