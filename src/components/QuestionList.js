@@ -22,13 +22,13 @@ const QuestionList = ({ queryArr }) => {
       <div className="two wide centered column"></div>
       <div className="two wide centered column">
         <button className="ui icon button" onClick={handleBack}>
-          <i class="angle left icon"></i>
+          <i className="angle left icon"></i>
         </button>
       </div>
       <div className="eight wide centered column">{questions[questionsIndex]}</div>
       <div className="two wide column">
         <button className="ui icon button" onClick={handleForward}>
-          <i class="angle right icon"></i>
+          <i className="angle right icon"></i>
         </button>
       </div>
       <div className="two wide centered column"></div>

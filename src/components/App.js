@@ -28,7 +28,6 @@ function App() {
       .then((questionData) => { setQuestions(questionData)})
   }, [])
 
-
   const addNewUser = (newSignup) => {
     fetch("http://localhost:3000/users", {
       method: "POST",
@@ -63,13 +62,20 @@ function App() {
     });
   };
 
+  useEffect(() => {
+    fetch("http://localhost:3000/me")
+      .then((response) => response.json())
+      .then((userData) => { setCurrentUser(userData)})
+  }, [])
+
+
   // Event Listeners
   return (
     <div className="App">
       <NavBar currentUser={currentUser} />
       <Switch>
         <Route exact path="/users/profile">
-          <Profile />
+          <Profile currentUser={currentUser}/>
         </Route>
         <Route exact path="/questions">
           <AddQuestion onSubmit={addNewQuestion} />
