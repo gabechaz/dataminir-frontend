@@ -47,30 +47,34 @@ function SurveyPage ({currentUser}) {
     // .then (user => setSponsor(user.name))
 
     return (
-        <div id='question-box'>
-            <h1 id='question'>{question}</h1>
-            <br />
-            <form onSubmit={handleSubmit}>
-           
-            <label >
-            <h4>{option1}</h4>
-            <input checked={selectedOption === 'option1'} onChange={() => {setSelectedOption('option1')}} id='answer-a' value='option1' type='radio' name='answer' className='answer' />
-            </label>
-           
-            <br />
-            
+      <div className="ui centered card">
+        <div className="content">
+          <div className="header">{question}</div>
+        </div>
+        <div className="content">
+          <form className="ui sub header" onSubmit={handleSubmit}>
             <label>
-                <h4>{option2}</h4>
-            <input checked={selectedOption === 'option2'} onChange={() => {setSelectedOption('option2')}} id='answer-b' value='option2' type='radio' name='answer' className='answer' />
+              <h4>{option1}</h4>
+              <input checked={selectedOption === 'option1'} onChange={() => {setSelectedOption('option1')}} id='answer-a' value='option1' type='radio' name='answer' className='answer' />
+            </label>
+            <br />
+            <label>
+              <h4>{option2}</h4>
+              <input checked={selectedOption === 'option2'} onChange={() => {setSelectedOption('option2')}} id='answer-b' value='option2' type='radio' name='answer' className='answer' />
             </label>
             <br />
             <label> 
-            <input type='submit'></input>
+              <input className="ui button" type='submit'></input>
             </label>
-            </form>
-            <h2>Submitted by: </h2>
-            <h5>Reward: ${reward} </h5>
+          </form>
         </div>
+        <div className="content">
+          <h4 className="ui sub header">Submitted By: </h4>
+        </div>
+        <div className="extra content">
+        <h4 className="ui sub header">Reward: {reward}</h4>
+        </div>
+      </div>
     )
 }
 

@@ -58,21 +58,45 @@ function Signup ({ onSubmit }) {
   }
 
   return (
-    <div>
-      <h2>Signup Page</h2>
-      <form onSubmit={handleSubmit}>
-        <input type="text" name="name" placeholder="Name *required" required value={name} onChange={handleName} />
-        <input type="text" name="age" placeholder="Age" value={age} onChange={handleAge} />
-        <input type="text" name="ethnicity" placeholder="Ethnicity" value={ethnicity} onChange={handleEthnicity}/>
-        <input type="text" name="genderIdentity" placeholder="Gender Identity" value={genderIdentity} onChange={handleGenderIdentity}/>
-        <input type="text" name="politicalParty" placeholder="Political Party" value={politicalParty} onChange={handlePoliticalParty}/>
-        <input type="text" name="location" placeholder="Location" value={location} onChange={handleLocation}/>
-        <input type="text" name="religion" placeholder="Religion" value={religion} onChange={handleReligion}/>
-        <input type="text" name="username" placeholder="Username *required" required value={username} onChange={handleUsername}/>
-        <input type="text" name="password" placeholder="Password *required" required value={password} onChange={handlePassword}/>
-        <button type="submit">Signup</button>
-      </form>
-    </div>
+    <form className="ui form" onSubmit={handleSubmit}>
+      <div className="field">
+        <label>*Name</label>
+        <input type="text" name="name" placeholder="Name" required value={name} onChange={handleName}/>
+      </div>
+      <div className="field">
+        <label>*Username</label>
+        <input type="text" name="Username" placeholder="Username" required value={username} onChange={handleUsername}/>
+      </div>
+      <div className="field">
+        <label>*Password</label>
+        <input type="text" name="Password" placeholder="Password" value={password} onChange={handlePassword}/>
+      </div>
+      <div className="field">
+        <label>Age</label>
+        <input type="text" name="Age" placeholder="Age" value={age} onChange={handleAge}/>
+      </div>
+      <div className="field">
+        <label>Ethnicity</label>
+        <input type="text" name="Ethnicity" placeholder="Ethnicity" value={ethnicity} onChange={handleEthnicity}/>
+      </div>
+      <div className="field">
+        <label>Gender Identity</label>
+        <input type="text" name="Gender Identity" placeholder="Gender Identity" value={genderIdentity} onChange={handleGenderIdentity}/>
+      </div>
+      <div className="field">
+        <label>Political Party</label>
+        <input type="text" name="Politcal Party" placeholder="Political Party" value={politicalParty} onChange={politicalParty}/>
+      </div>
+      <div className="field">
+        <label>Location</label>
+        <input type="text" name="Location" placeholder="Location" value={location} onChange={handleLocation}/>
+      </div>
+      <div className="field">
+        <label>Religion</label>
+        <input type="text" name="Religion" placeholder="Religion" value={religion} onChange={handleReligion}/>
+      </div>
+      <button className="ui button" type="submit">Signup</button>
+    </form>
   )
 }
 

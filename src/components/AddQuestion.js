@@ -36,19 +36,29 @@ function AddQuestion ( {onSubmit} )  {
 
     return (
       <div>
-        <h2>Add a New Question</h2>
         {isFormShown && 
-       (<form onSubmit={handleSubmit}>
-          <input type="text" name="query" placeholder="Question" value={question} onChange={handleQuestion}/>
-          <input type="text" name="answerA" placeholder="Option1" value={option1} onChange={handleOption1}/>
-          <input type="text" name="answerB" placeholder="Option2" value={option2} onChange={handleOption2}/>
-          <input type="text" name="reward" placeholder="Reward" value={reward} onChange={handleReward}/>
-          <button type="submit">Add Question</button>
+       (<form className="ui form" onSubmit={handleSubmit}>
+          <div className="field">
+            <label>Question</label>
+            <input type="text" name="query" placeholder="Question" value={question} onChange={handleQuestion}/>
+          </div>
+          <div className="field">
+            <label>Option 1</label>
+            <input type="text" name="answerA" placeholder="Option1" value={option1} onChange={handleOption1}/>
+          </div>
+          <div className="field">
+            <label>Option 2</label>
+            <input type="text" name="answerB" placeholder="Option2" value={option2} onChange={handleOption2}/>
+          </div>
+          <div className="field">
+            <label>Reward</label>
+            <input type="text" name="reward" placeholder="Reward" value={reward} onChange={handleReward}/>
+          </div>
+          <button className="ui button" type="submit">Add Question</button>
         </form>) }
-        {isFormShown ? null: <button onClick = {handleIsFormShown}>Add A Question</button>}
+        {isFormShown ? null: <button className="ui button" onClick = {handleIsFormShown}>Add A Question</button>}
       </div>
     );
-
 }
 
 export default AddQuestion

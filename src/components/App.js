@@ -16,7 +16,8 @@ function App() {
 
   }
   // State Variables
-  const [currentUser, setCurrentUser] = useState(user);
+  const [currentUser, setCurrentUser] = useState(null);
+  // const [loggedIn, setLoggedIn] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [users, setUsers] = useState([]);
   // Fetch Requests
@@ -26,7 +27,6 @@ function App() {
       .then((response) => response.json())
       .then((questionData) => { setQuestions(questionData)})
   }, [])
-
 
   const addNewUser = (newSignup) => {
     fetch("http://localhost:3000/users", {
@@ -53,16 +53,29 @@ function App() {
   };
 
   const addNewCurrentUser = (newCurrentUser) => {
-    setCurrentUser(newCurrentUser);
+    fetch("http://localhost:3000/login", {
+      method: "POST"
+    })
+      .then((r) => r.json())
+      .then((newUser) => {
+        setCurrentUser(newUser)
+    });
   };
+
+  useEffect(() => {
+    fetch("http://localhost:3000/me")
+      .then((response) => response.json())
+      .then((userData) => { setCurrentUser(userData)})
+  }, [])
+
 
   // Event Listeners
   return (
     <div className="App">
-      <NavBar loggedIn={false} />
+      <NavBar currentUser={currentUser} />
       <Switch>
         <Route exact path="/users/profile">
-          <Profile />
+          <Profile currentUser={currentUser}/>
         </Route>
         <Route exact path="/questions">
           <AddQuestion onSubmit={addNewQuestion} />
@@ -71,11 +84,11 @@ function App() {
         <Route exact path="/users/signup">
           <Signup onSubmit={addNewUser} />
         </Route>
-        {/* <Route exact path='/users/login'>
-          <Login  onSubmit={addNewCurrentUser}/>
-        </Route> */}
         <Route exact path ='/questions/:id' >
         <QuestionStats />
+        </Route>
+        <Route exact path='/users/login'>
+          <Login  setCurrentUser={setCurrentUser} onSubmit={addNewCurrentUser}/>
         </Route>
         <Route exact path='/surveys/:id'>
           <SurveyPage currentUser ={currentUser} />
