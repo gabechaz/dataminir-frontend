@@ -17,7 +17,7 @@ function App() {
   }
   // State Variables
   const [currentUser, setCurrentUser] = useState(null);
-  // const [loggedIn, setLoggedIn] = useState(false);
+  const [currentUserWallet, setCurrentUserWallet] = useState(null)
   const [questions, setQuestions] = useState([]);
   const [users, setUsers] = useState([]);
   // Fetch Requests
@@ -59,6 +59,7 @@ function App() {
       .then((r) => r.json())
       .then((newUser) => {
         setCurrentUser(newUser)
+        setCurrentUserWallet(newUser.wallet)
     });
   };
 
@@ -75,10 +76,10 @@ function App() {
       <NavBar currentUser={currentUser} />
       <Switch>
         <Route exact path="/users/profile">
-          <Profile currentUser={currentUser}/>
+          <Profile currentUserWallet = {currentUserWallet} currentUser={currentUser}/>
         </Route>
         <Route exact path="/questions">
-          <AddQuestion onSubmit={addNewQuestion} />
+          <AddQuestion currentUser = {currentUser} onSubmit={addNewQuestion} />
           <QuestionList queryArr={questions} />
         </Route>
         <Route exact path="/users/signup">
@@ -91,7 +92,7 @@ function App() {
           <Login  setCurrentUser={setCurrentUser} onSubmit={addNewCurrentUser}/>
         </Route>
         <Route exact path='/surveys/:id'>
-          <SurveyPage currentUser ={currentUser} />
+          <SurveyPage setCurrentUserWallet = {setCurrentUserWallet} currentUser ={currentUser} />
         </Route>
 
       </Switch>

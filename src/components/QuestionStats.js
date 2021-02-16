@@ -42,8 +42,8 @@ function QuestionStats () {
     return (
         <div id='question-box'>
             <h1 id='question'>{question}</h1>
-            <h3 class='answer'> {option1} {activeDemo}%</h3>
-            <h3 class='answer'> {option2} {100 - activeDemo}%</h3>
+            <h3 className='answer'> {option1} {option_1_count}%</h3>
+            <h3 className='answer'> {option2} {100 - option_1_count}%</h3>
             <h5>Price: {reward}</h5>
         </div>
     )

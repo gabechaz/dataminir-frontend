@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import { useHistory } from "react-router-dom";
-function SurveyPage ({currentUser}) {
-    console.log(currentUser)
-    const [sponsor, setSponsor] = useState("")
+function SurveyPage ({currentUser, setCurrentUserWallet}) {
     const [questionObj, setQuestionObj] = useState({})
     const { id } = useParams()
-    const {reward, creator_id, option1, option2, question} = questionObj
+    const {reward, option1, option2, question, creator} = questionObj
     const [selectedOption, setSelectedOption] = useState('option1')
     const history = useHistory()
 
@@ -17,7 +15,21 @@ function SurveyPage ({currentUser}) {
            question_id: id,
            response: selectedOption
        }
-       console.log(answerObj)
+     
+       const walletObj = {
+           wallet: currentUser.wallet + questionObj.reward
+       }
+
+       fetch(`http://localhost:3000/users/${currentUser.id}`, {
+           method: "PATCH",
+           headers: {
+               "Content-Type": "application/json"
+           },
+           body: JSON.stringify(walletObj)
+       })
+       .then( res => res.json())
+       .then (data => console.log(data))
+    
        fetch("http://localhost:3000/answers", {
         method: "POST",
         headers: {
@@ -28,6 +40,7 @@ function SurveyPage ({currentUser}) {
       .then(res => res.json())
       .then(answer => console.log(answer))
       history.push(`/questions/${id}`)
+
     }
 
    
@@ -40,11 +53,6 @@ function SurveyPage ({currentUser}) {
     }, [])
 
 
-
-    // Need to put in the logic to create users so this fetch function actually does something
-    // fetch(`http://localhost:3000/users/${creator_id}`)
-    // .then(res => res.json())
-    // .then (user => setSponsor(user.name))
 
     return (
       <div className="ui centered card">
@@ -69,7 +77,7 @@ function SurveyPage ({currentUser}) {
           </form>
         </div>
         <div className="content">
-          <h4 className="ui sub header">Submitted By: </h4>
+          <h4 className="ui sub header">Submitted By: {creator} </h4>
         </div>
         <div className="extra content">
         <h4 className="ui sub header">Reward: {reward}</h4>

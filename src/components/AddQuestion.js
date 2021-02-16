@@ -1,6 +1,6 @@
 import React, { useState }from "react"; 
 
-function AddQuestion ( {onSubmit} )  {
+function AddQuestion ( {onSubmit, currentUser} )  {
  
   const [question, setQuestion] = useState("")
   const [option1, setOption1] = useState("")

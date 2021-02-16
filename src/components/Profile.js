@@ -1,6 +1,6 @@
 import React from "react";
 
-function Profile({ currentUser }) { //guard from getting hit before current_user is set
+function Profile({ currentUser, currentUserWallet }) { //guard from getting hit before current_user is set
   
   return (
     <div className="ui card">
@@ -49,6 +49,9 @@ function Profile({ currentUser }) { //guard from getting hit before current_user
         <div className="content">
           <div className="summary">
           <p>Religion: {currentUser.religion}</p>
+          </div>
+          <div>
+            <p> Wallet: {currentUserWallet}</p>
           </div>
         </div>
       </div>
