@@ -10,7 +10,7 @@ function QuestionCard ({questionStats: {question, reward, optionA, optionB, id, 
     }
 
     return (
-      <div className="ui centered card">
+      <div className="ui centered olive card">
         <div className="content">
           <div className="header">{question}</div>
         </div>

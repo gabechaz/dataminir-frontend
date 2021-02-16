@@ -1,4 +1,5 @@
 import React, { useState }from "react"; 
+import { useHistory } from "react-router-dom"; 
 
 function AddQuestion ( {onSubmit, currentUser} )  {
  
@@ -12,11 +13,14 @@ function AddQuestion ( {onSubmit, currentUser} )  {
     setIsFormShown((isFormShown) => !isFormShown);
   }
 
+  const history = useHistory()
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const newQuestion = {question, option1, option2, reward}
     onSubmit(newQuestion)
     handleIsFormShown()
+    history.push('/questions')
   }
 
   const handleQuestion = (event) => {
@@ -57,7 +61,7 @@ function AddQuestion ( {onSubmit, currentUser} )  {
           </div>
           <button className="ui button" type="submit">Add Question</button>
         </form>) }
-        {isFormShown ? null: <button className="ui button" onClick = {handleIsFormShown}>Add A Question</button>}
+        {isFormShown ? null: <button className="ui brown button" onClick = {handleIsFormShown}>Add A Question</button>}
       </div>
     );
 }
