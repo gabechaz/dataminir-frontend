@@ -7,7 +7,7 @@ return (
   <div className="ui five item menu">
     <a className="active item">Dataminr</a>
     <Link className="item" to='/questions' exact='true' > Questions </Link>
-    <Link className="item" to='/questions/survey-page' exact='true'> Survey </Link>
+    <Link className="item" to='/responses' exact='true'> Survey Responses </Link>
     {currentUser ?  <Link  className="item" to='/users/profile' exact='true' > Profile </Link>  : <Link className="item" to='/users/signup' exact='true' > Signup </Link> }
     {currentUser ? <Link className="item" to='/users/logout' exact='true' onClick={handleLogout}>Log Out</Link> : <Link  className="item" to='/users/login' exact='true' > Log In </Link>}
 </div>

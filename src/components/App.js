@@ -6,7 +6,7 @@ import Login from './Login.js'
 import Signup from './Signup.js'
 import QuestionList from './QuestionList.js'
 import SurveyPage from './SurveyPage.js'
-import SurveyList from './SurveyList.js'
+import ResponseList from './ResponseList.js'
 import QuestionStats from './QuestionStats.js'
 import NavBar from './NavBar'
 
@@ -99,6 +99,9 @@ function App() {
         </Route>
         <Route exact path='/users/login'>
           <Login  setCurrentUser={setCurrentUser} onSubmit={addNewCurrentUser}/>
+        </Route>
+        <Route exact path = '/responses'>
+          <ResponseList currentUser = {currentUser} />
         </Route>
         <Route exact path='/surveys/:id'>
           <SurveyPage setCurrentUser = {setCurrentUser} currentUser ={currentUser} />

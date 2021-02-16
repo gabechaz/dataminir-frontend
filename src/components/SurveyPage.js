@@ -29,7 +29,7 @@ function SurveyPage ({currentUser, setCurrentUser}) {
            body: JSON.stringify(walletObj)
        })
        .then( res => res.json())
-       .then (data => setCurrentUser({wallet: data}))
+       .then (data => setCurrentUser({wallet: data.wallet}))
     
        fetch("http://localhost:3000/answers", {
         method: "POST",
