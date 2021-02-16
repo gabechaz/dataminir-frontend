@@ -1,6 +1,6 @@
 import React from "react";
 
-function Profile({ currentUser, currentUserWallet }) { //guard from getting hit before current_user is set
+function Profile({ currentUser, currentUserWallet }) {
   
   return (
     <div className="ui centered card">

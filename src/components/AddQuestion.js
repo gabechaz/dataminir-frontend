@@ -1,4 +1,5 @@
 import React, { useState }from "react"; 
+import { useHistory } from "react-router-dom";
 
 function AddQuestion ( {onSubmit, currentUser} )  {
  
@@ -12,11 +13,14 @@ function AddQuestion ( {onSubmit, currentUser} )  {
     setIsFormShown((isFormShown) => !isFormShown);
   }
 
+  const history = useHistory()
+
   const handleSubmit = (event) => {
     event.preventDefault()
     const newQuestion = {question, option1, option2, reward}
     onSubmit(newQuestion)
     handleIsFormShown()
+    history.push('/questions')
   }
 
   const handleQuestion = (event) => {
