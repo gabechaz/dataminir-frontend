@@ -1,15 +1,15 @@
 import React from "react"; 
 import { Link } from "react-router-dom";
 
-function NavBar ({currentUser}) {
+function NavBar ({currentUser, handleLogout}) {
 
 return (
-  <div className="ui brown four item menu">
+  <div className="ui five item menu">
     <a className="active item">Dataminr</a>
     <Link className="item" to='/questions' exact='true' > Questions </Link>
     <Link className="item" to='/questions/survey-page' exact='true'> Survey </Link>
     {currentUser ?  <Link  className="item" to='/users/profile' exact='true' > Profile </Link>  : <Link className="item" to='/users/signup' exact='true' > Signup </Link> }
-    {currentUser ? null : <Link  className="item" to='/users/login' exact='true' > Log In </Link>}
+    {currentUser ? <Link className="item" to='/users/logout' exact='true' onClick={handleLogout}>Log Out</Link> : <Link  className="item" to='/users/login' exact='true' > Log In </Link>}
 </div>
   
     // <div className='navbar'>
