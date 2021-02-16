@@ -85,7 +85,7 @@ function Signup ({ onSubmit }) {
       </div>
       <div className="field">
         <label>Political Party</label>
-        <input type="text" name="Politcal Party" placeholder="Political Party" value={politicalParty} onChange={politicalParty}/>
+        <input type="text" name="Politcal Party" placeholder="Political Party" value={politicalParty} onChange={handlePoliticalParty}/>
       </div>
       <div className="field">
         <label>Location</label>

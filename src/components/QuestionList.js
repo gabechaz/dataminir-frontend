@@ -19,17 +19,17 @@ const QuestionList = ({ queryArr }) => {
 
   return (
     <div className="ui grid">
-      <div className="two wide centered column"></div>
-      <div className="two wide centered column">
-        <button className="ui icon button" onClick={handleBack}>
+      <div className="three wide centered column"></div>
+      <div className="one wide centered column">
+        {questionsIndex > 0 && (<button className="ui icon button" onClick={handleBack}>
           <i className="angle left icon"></i>
-        </button>
+        </button>)}
       </div>
-      <div className="eight wide centered column">{questions[questionsIndex]}</div>
-      <div className="two wide column">
-        <button className="ui icon button" onClick={handleForward}>
+      <div className="six wide centered column">{questions[questionsIndex]}</div>
+      <div className="five wide column">
+        {questionsIndex < questions.length -1 && (<button className="ui icon button" onClick={handleForward}>
           <i className="angle right icon"></i>
-        </button>
+        </button>)}
       </div>
       <div className="two wide centered column"></div>
     </div>

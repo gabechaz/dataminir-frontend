@@ -63,6 +63,15 @@ function App() {
     });
   };
 
+  const logout = () => {
+    fetch("http://localhost:3000/logout", {
+      method: "POST"
+    })
+      .then((User) => {
+        setCurrentUser(null)
+    });
+  };
+
   useEffect(() => {
     fetch("http://localhost:3000/me")
       .then((response) => response.json())
@@ -73,10 +82,10 @@ function App() {
   // Event Listeners
   return (
     <div className="App">
-      <NavBar currentUser={currentUser} />
+      <NavBar currentUser={currentUser} handleLogout={logout} />
       <Switch>
         <Route exact path="/users/profile">
-          <Profile currentUserWallet = {currentUserWallet} currentUser={currentUser}/>
+        {currentUser &&  <Profile currentUserWallet = {currentUserWallet} currentUser={currentUser}/>}
         </Route>
         <Route exact path="/questions">
           <AddQuestion currentUser = {currentUser} onSubmit={addNewQuestion} />

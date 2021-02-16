@@ -3,7 +3,7 @@ import React from "react";
 function Profile({ currentUser, currentUserWallet }) { //guard from getting hit before current_user is set
   
   return (
-    <div className="ui card">
+    <div className="ui centered card">
   <div className="content">
     <div className="header">{currentUser.name}</div>
   </div>
@@ -27,14 +27,14 @@ function Profile({ currentUser, currentUserWallet }) { //guard from getting hit 
       <div className="event">
         <div className="content">
           <div className="summary">
-          <p>Gender Identity: {currentUser.genderIdentity}</p>
+          <p>Gender Identity: {currentUser.gender_identity}</p>
           </div>
         </div>
       </div>
       <div className="event">
         <div className="content">
           <div className="summary">
-          <p>Political Party: {currentUser.politicalParty}</p>
+          <p>Political Party: {currentUser.political_party}</p>
           </div>
         </div>
       </div>
