@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-
-function SurveyPage({ currentUser, setCurrentUser }) {
+function SurveyPage({ currentUser, setCurrentUser, activeQuestion, setActiveQuestion }) {
   const [questionObj, setQuestionObj] = useState({});
   const { id } = useParams();
   const { reward, option1, option2, question, creator } = questionObj;
@@ -11,6 +10,9 @@ function SurveyPage({ currentUser, setCurrentUser }) {
 
   function handleSubmit(e) {
     e.preventDefault();
+    console.log(activeQuestion)
+    setActiveQuestion({id: id})
+    console.log(activeQuestion)
     const answerObj = {
       user_id: currentUser.id,
       question_id: id,
@@ -30,7 +32,11 @@ function SurveyPage({ currentUser, setCurrentUser }) {
       body: JSON.stringify(walletObj),
     })
       .then((res) => res.json())
-      .then((data) => setCurrentUser({ wallet: data }));
+      .then((data) => setCurrentUser ((currentUser) => {
+        return (
+          {...currentUser, wallet: data.wallet}
+        )
+      }) )
 
     fetch("http://localhost:3000/answers", {
       method: "POST",
@@ -39,9 +45,19 @@ function SurveyPage({ currentUser, setCurrentUser }) {
         Accept: "application/json",
       },
       body: JSON.stringify(answerObj),
-    });
-    history.push(`/questions/${id}`);
+    })
+    history.push(`/questions/${id}`)
+    console.log(activeQuestion)
+    // setNSendQuestion(activeQuestion.id)
   }
+
+    function setNSendQuestion (id) {
+      fetch(`http://localhost:3000/questions/${id}`)
+      .then(res => res.json())
+      .then(question => {setActiveQuestion(question)
+      history.push(`/questions/${id}`);
+      })
+    }
 
   useEffect(() => {
     fetch(`http://localhost:3000/questions/${id}`)

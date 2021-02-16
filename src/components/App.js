@@ -9,17 +9,16 @@ import SurveyPage from './SurveyPage.js'
 import ResponseList from './ResponseList.js'
 import QuestionStats from './QuestionStats.js'
 import NavBar from './NavBar'
+import { useHistory } from "react-router-dom";
 
 function App() {
-  const user = {
-    id: 1,
-
-  }
+  const history = useHistory()
   // State Variables
   const [currentUser, setCurrentUser] = useState(null);
   const [currentUserWallet, setCurrentUserWallet] = useState(null)
   const [questions, setQuestions] = useState([]);
   const [users, setUsers] = useState([]);
+  const [activeQuestion,setActiveQuestion] = useState(" ")
   // Fetch Requests
 
   useEffect(() => {
@@ -49,8 +48,10 @@ function App() {
       body: JSON.stringify(newQuestion),
     })
       .then((r) => r.json())
-      .then((newQuestion) => setQuestions([...questions, newQuestion]));
-  };
+      .then((newQuestion) => {
+        setQuestions([...questions, newQuestion])
+        history.push(`/surveys/${newQuestion.id}`)
+      } )}
 
   const addNewCurrentUser = (newCurrentUser) => {
     fetch("http://localhost:3000/login", {
@@ -95,16 +96,16 @@ function App() {
           <Signup onSubmit={addNewUser} />
         </Route>
         <Route exact path ='/questions/:id' >
-        <QuestionStats />
+       {activeQuestion && <QuestionStats setActiveQuestion = {setActiveQuestion} activeQuestion = {activeQuestion} />}
         </Route>
         <Route exact path='/users/login'>
           <Login  setCurrentUser={setCurrentUser} onSubmit={addNewCurrentUser}/>
         </Route>
         <Route exact path = '/responses'>
-          <ResponseList currentUser = {currentUser} />
+         {currentUser && <ResponseList currentUser = {currentUser} />}
         </Route>
         <Route exact path='/surveys/:id'>
-          <SurveyPage setCurrentUser = {setCurrentUser} currentUser ={currentUser} />
+          {activeQuestion && <SurveyPage setActiveQuestion = {setActiveQuestion} setCurrentUser = {setCurrentUser} currentUser ={currentUser} />}
         </Route>
 
       </Switch>

@@ -11,8 +11,8 @@ const dummyQuestion = {
     option_2_count: 'Placeholder'
 }
 
-function QuestionStats () {
-    const [activeQuestion,setActiveQuestion] = useState(dummyQuestion)
+function QuestionStats ({activeQuestion, setActiveQuestion}) {
+    
    
     const { id } = useParams()
     const [activeDemo, setActiveDemo] = useState(null)
@@ -38,7 +38,7 @@ function QuestionStats () {
             fetch(`http://localhost:3000/questions/${id}`)
                 .then(r => r.json())
                 .then(data => setActiveQuestion(data))
-                setActiveDemo(option_1_count)
+                
         }, [])
     return (
         <div id='question-box'>
