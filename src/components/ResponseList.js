@@ -20,11 +20,10 @@ useEffect(() => {
   }, [])
 return (
 <div>
-    {responses}
+    <div className="ui massive middle aligned divided animated centered list">{responses}</div>
 </div>
     
 )
-
 }
 
 export default ResponseList
