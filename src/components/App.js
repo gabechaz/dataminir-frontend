@@ -101,7 +101,7 @@ function App() {
           <Login  setCurrentUser={setCurrentUser} onSubmit={addNewCurrentUser}/>
         </Route>
         <Route exact path='/surveys/:id'>
-          <SurveyPage setCurrentUserWallet = {setCurrentUserWallet} currentUser ={currentUser} />
+          <SurveyPage setCurrentUser = {setCurrentUser} currentUser ={currentUser} />
         </Route>
 
       </Switch>

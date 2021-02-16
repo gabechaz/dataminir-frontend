@@ -51,7 +51,7 @@ function Profile({ currentUser, currentUserWallet }) { //guard from getting hit 
           <p>Religion: {currentUser.religion}</p>
           </div>
           <div>
-            <p> Wallet: {currentUserWallet}</p>
+            <p> Wallet: {currentUser.wallet}</p>
           </div>
         </div>
       </div>

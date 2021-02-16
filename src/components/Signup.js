@@ -11,7 +11,7 @@ function Signup ({ onSubmit }) {
   const [religion, setReligion] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-
+  const wallet = 0
   const handleName = (event) => {
     setName(event.target.value)
   }
@@ -52,7 +52,7 @@ function Signup ({ onSubmit }) {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    const newSignup = {name, age, ethnicity, genderIdentity, politicalParty, location, religion, username, password}
+    const newSignup = {name, age, ethnicity, genderIdentity, politicalParty, location, religion, username, password, wallet}
     onSubmit(newSignup)
     history.push('/questions')
   }

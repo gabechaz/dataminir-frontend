@@ -24,26 +24,28 @@ function QuestionStats () {
     // )
 
 
-    useEffect(() => {
-        fetch(`http://localhost:3000/questions/${id}`)
-            .then(r => r.json())
-            .then(data => setActiveQuestion(data))
-            setActiveDemo(option_1_count)
-    }, [])
+
     
     const {question,
         option1,
         option2,
         reward,
         option_1_count,
-        male_opt_1_count,
-        female_opt_1_count}
+       answer_count}
         = activeQuestion
+
+        useEffect(() => {
+            fetch(`http://localhost:3000/questions/${id}`)
+                .then(r => r.json())
+                .then(data => setActiveQuestion(data))
+                setActiveDemo(option_1_count)
+        }, [])
     return (
         <div id='question-box'>
             <h1 id='question'>{question}</h1>
             <h3 className='answer'> {option1} {option_1_count}%</h3>
             <h3 className='answer'> {option2} {100 - option_1_count}%</h3>
+            <h3 className='answer'>{answer_count} users answered this question</h3>
             <h5>Price: {reward}</h5>
         </div>
     )

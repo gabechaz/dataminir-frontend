@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom"
 import { useHistory } from "react-router-dom";
-function SurveyPage ({currentUser, setCurrentUserWallet}) {
+function SurveyPage ({currentUser, setCurrentUser}) {
     const [questionObj, setQuestionObj] = useState({})
     const { id } = useParams()
     const {reward, option1, option2, question, creator} = questionObj
@@ -15,30 +15,30 @@ function SurveyPage ({currentUser, setCurrentUserWallet}) {
            question_id: id,
            response: selectedOption
        }
-     
+       console.log(currentUser.wallet, questionObj.reward)
        const walletObj = {
            wallet: currentUser.wallet + questionObj.reward
        }
-
+       console.log(walletObj)
        fetch(`http://localhost:3000/users/${currentUser.id}`, {
            method: "PATCH",
            headers: {
-               "Content-Type": "application/json"
+               "Content-Type": "application/json",
+               'Accept': "application/json"
            },
            body: JSON.stringify(walletObj)
        })
        .then( res => res.json())
-       .then (data => console.log(data))
+       .then (data => setCurrentUser({wallet: data}))
     
        fetch("http://localhost:3000/answers", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          'Accept': "application/json"
         },
-        body: JSON.stringify(answerObj),
+        body: JSON.stringify(answerObj)
       })
-      .then(res => res.json())
-      .then(answer => console.log(answer))
       history.push(`/questions/${id}`)
 
     }
