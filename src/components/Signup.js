@@ -95,7 +95,7 @@ function Signup ({ onSubmit }) {
         <label>Religion</label>
         <input type="text" name="Religion" placeholder="Religion" value={religion} onChange={handleReligion}/>
       </div>
-      <button className="ui button" type="submit">Signup</button>
+      <button className="ui brown button" type="submit">Signup</button>
     </form>
   )
 }

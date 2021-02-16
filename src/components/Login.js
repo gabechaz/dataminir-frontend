@@ -32,7 +32,7 @@ const Login = ({ onSubmit }) => {
         <label>Password</label>
         <input type="text" name="password" placeholder="Password" value={password} onChange={handlePassword}/>
       </div>
-      <button className="ui button" type="submit">Login</button>
+      <button className="ui brown button" type="submit">Login</button>
     </form>
   )
 

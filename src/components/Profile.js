@@ -1,9 +1,9 @@
 import React from "react";
 
 function Profile({ currentUser, currentUserWallet }) {
-  
+
   return (
-    <div className="ui centered card">
+    <div className="ui centered olive card">
   <div className="content">
     <div className="header">{currentUser.name}</div>
   </div>
@@ -50,8 +50,12 @@ function Profile({ currentUser, currentUserWallet }) {
           <div className="summary">
           <p>Religion: {currentUser.religion}</p>
           </div>
-          <div>
-            <p> Wallet: {currentUser.wallet}</p>
+        </div>
+      </div>
+      <div className="event">
+        <div className="content">
+          <div className="summary">
+          <p>Wallet: {currentUser.wallet}</p>
           </div>
         </div>
       </div>
