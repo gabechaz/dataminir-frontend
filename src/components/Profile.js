@@ -1,9 +1,9 @@
 import React from "react";
 
-function Profile({ currentUser }) { //guard from getting hit before current_user is set
+function Profile({ currentUser }) {
   
   return (
-    <div className="ui card">
+    <div className="ui centered card">
   <div className="content">
     <div className="header">{currentUser.name}</div>
   </div>
@@ -27,14 +27,14 @@ function Profile({ currentUser }) { //guard from getting hit before current_user
       <div className="event">
         <div className="content">
           <div className="summary">
-          <p>Gender Identity: {currentUser.genderIdentity}</p>
+          <p>Gender Identity: {currentUser.gender_identity}</p>
           </div>
         </div>
       </div>
       <div className="event">
         <div className="content">
           <div className="summary">
-          <p>Political Party: {currentUser.politicalParty}</p>
+          <p>Political Party: {currentUser.political_party}</p>
           </div>
         </div>
       </div>

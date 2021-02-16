@@ -15,6 +15,7 @@ function AddQuestion ({ onSubmit })  {
     event.preventDefault()
     const newQuestion = {question, option1, option2, reward}
     onSubmit(newQuestion)
+    handleIsFormShown()
   }
 
   const handleQuestion = (event) => {
