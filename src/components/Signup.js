@@ -12,6 +12,7 @@ function Signup ({ onSubmit }) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const wallet = 0
+  
   const handleName = (event) => {
     setName(event.target.value)
   }
