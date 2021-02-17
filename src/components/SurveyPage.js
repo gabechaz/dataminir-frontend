@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-function SurveyPage({ currentUser, setCurrentUser, activeQuestion, setActiveQuestion }) {
+function SurveyPage({ currentUser, setCurrentUser, activeQuestion, setActiveQuestion, userQuestions, setUserQuestions }) {
   const [questionObj, setQuestionObj] = useState({});
   const { id } = useParams();
   const { reward, option1, option2, question, creator } = questionObj;
@@ -56,6 +56,7 @@ function SurveyPage({ currentUser, setCurrentUser, activeQuestion, setActiveQues
       fetch(`http://localhost:3000/questions/${id}`)
       .then(res => res.json())
       .then(question => {setActiveQuestion(question)
+        // setUserQuestions(...userQuestions, question)
       history.push(`/questions/${id}`);
       })
     }

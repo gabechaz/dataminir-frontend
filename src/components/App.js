@@ -18,8 +18,31 @@ function App() {
   const [questions, setQuestions] = useState([]);
   const [users, setUsers] = useState([]);
   const [activeQuestion,setActiveQuestion] = useState(" ")
+   const [userQuestions, setUserQuestions] = useState([])
   // Fetch Requests
 
+
+  useEffect(() => {
+    const token = localStorage.getItem("token") 
+    fetch("http://localhost:3000/me", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+      .then((response) => response.json())
+      .then((userData) => { 
+        if (userData.id)
+        {setCurrentUser(userData)}})
+  }, [])
+
+
+
+  // useEffect(() => {
+  //   fetch(`http://localhost:3000/users/${currentUser.id}`)
+  //     .then((response) => response.json())
+  //     .then((userData) => { setUserQuestions(userData.questions)})
+  // }, [])
+  
   useEffect(() => {
     fetch("http://localhost:3000/questions")
       .then((response) => response.json())
@@ -91,25 +114,13 @@ function App() {
     fetch("http://localhost:3000/logout", {
       method: "POST"
     })
-      .then((User) => {
+      .then((user) => {
         setCurrentUser(null)
         console.log('logged out')
     });
   };
 
-  useEffect(() => {
-    const token = localStorage.getItem("token") 
-    
-    fetch("http://localhost:3000/me", {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    })
-      .then((response) => response.json())
-      .then((userData) => { 
-        if (userData.id)
-        {setCurrentUser(userData)}})
-  }, [])
+
 
 
   // Event Listeners
@@ -134,10 +145,11 @@ function App() {
           <Login  setCurrentUser={setCurrentUser} onSubmit={addNewCurrentUser}/>
         </Route>
         <Route exact path = '/responses'>
-         {currentUser && <ResponseList currentUser = {currentUser} />}
+         {currentUser && <ResponseList setUserQuestions = {setUserQuestions} userQuestions = {userQuestions} currentUser = {currentUser} />}
         </Route>
         <Route exact path='/surveys/:id'>
-          {activeQuestion && <SurveyPage setActiveQuestion = {setActiveQuestion} setCurrentUser = {setCurrentUser} currentUser ={currentUser} />}
+          {activeQuestion && <SurveyPage userQuestions = {userQuestions} setUserQuestions = {setUserQuestions}
+           setActiveQuestion = {setActiveQuestion} setCurrentUser = {setCurrentUser} currentUser ={currentUser} />}
         </Route>
 
       </Switch>
