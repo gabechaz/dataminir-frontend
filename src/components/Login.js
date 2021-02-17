@@ -23,7 +23,7 @@ const Login = ({ onSubmit }) => {
   }
   
   return (
-    <form className="ui form" onSubmit={handleSubmit}>
+    <form className="ui form" style={{padding: '25px'}} onSubmit={handleSubmit}>
       <div className="field">
         <label>Username</label>
         <input type="text" name="username" placeholder="Username" value={username} onChange={handleUsername}/>

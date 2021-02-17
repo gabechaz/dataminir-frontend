@@ -36,9 +36,3 @@
     transform: rotate(360deg);
   }
 }
-
-#question-box {
-  height: 400px;
-  width: 300px; 
-  color: red;  
-}
