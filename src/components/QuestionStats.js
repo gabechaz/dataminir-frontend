@@ -41,14 +41,6 @@ function QuestionStats ({activeQuestion, setActiveQuestion}) {
                 
         }, [])
     return (
-        // <div id='question-box'>
-        //     <h1 id='question'>{question}</h1>
-        //     <h3 className='answer'> {option1} {option_1_count}%</h3>
-        //     <h3 className='answer'> {option2} {100 - option_1_count}%</h3>
-        //     <h3 className='answer'>{answer_count} users answered this question</h3>
-        //     <h5>Price: {reward}</h5>
-        // </div>
-
        <div className="ui centered olive card" id="profile">
         <div className="content">
           <div className="header">
