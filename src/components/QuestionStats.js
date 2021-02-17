@@ -41,46 +41,34 @@ function QuestionStats ({activeQuestion, setActiveQuestion}) {
                 
         }, [])
     return (
-       <div className="ui centered olive card" id="profile">
+      <div className="ui centered olive card">
         <div className="content">
-          <div className="header">
-            <h2>{question}</h2>
+          <div className="header">{question}</div>
+        </div>
+        {/* <div className="content">
+          <h4 className="ui sub header">{option_1_count}% of users answered {option1}</h4>
+          <h4 className="ui sub header">{100 - option_1_count}% of users answered {option2}</h4>
+          <h4 className="ui sub header">{answer_count <= 1 ? (`${answer_count} user answered this question`) : (`${answer_count} users answered this question`)}</h4>
+        </div> */}
+        <div class="ui statistics" style={{margin: 'inherit'}}>
+          <div class="olive statistic">
+            <div class="value">{option_1_count}%</div>
+            <div class="label">of users answered {option1}</div>
+          </div>
+          <div class="olive statistic">
+            <div class="value">{100 - option_1_count}%</div>
+            <div class="label">of users answered {option2}</div>
           </div>
         </div>
         <div className="content">
-          <div className="ui small feed">
-            <div className="event">
-              <div className="content">
-                <div className="summary">
-                   <h2>{option1} {option_1_count}%</h2>
-                </div>
-              </div>
-            </div>
-            <div className="event">
-              <div className="content">
-                <div className="summary">
-                <h2>{option2} {100 - option_1_count}%</h2>
-                </div>
-              </div>
-            </div>
-            <div className="event">
-              <div className="content">
-                <div className="summary">
-                <h4>{answer_count} users answered this question</h4>
-                </div>
-              </div>
-            </div>
-            <div className="event">
-              <div className="content">
-                <div className="summary">
-                <h2>Price: {reward}</h2>
-                </div>
-              </div>
-            </div>
-          </div>
+          <div className="ui sub header">{answer_count <= 1 ? (`${answer_count} user answered this question`) : (`${answer_count} users answered this question`)}</div>
+        </div>
+        <div className="content">
+          <div className="ui sub header">REWARD: {reward}</div>
         </div>
       </div>
     )
 }
+
 
 export default QuestionStats

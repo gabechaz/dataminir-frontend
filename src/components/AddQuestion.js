@@ -59,8 +59,10 @@ function AddQuestion ( {onSubmit, currentUser} )  {
             <input type="text" name="reward" placeholder="Reward" value={reward} onChange={handleReward}/>
           </div>
           <button className="ui button" type="submit">Add Question</button>
-        </form>) }
+        </form>)}
+        <div style={{padding: '25px'}}>
         {isFormShown ? null: <button className="ui olive button" onClick = {handleIsFormShown}>Add A Question</button>}
+        </div>
       </div>
     );
 }

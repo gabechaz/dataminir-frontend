@@ -59,7 +59,7 @@ function Signup ({ onSubmit }) {
   }
 
   return (
-    <form className="ui form" onSubmit={handleSubmit}>
+    <form className="ui form" style={{padding: '25px'}} onSubmit={handleSubmit}>
       <div className="field">
         <label>*Name</label>
         <input type="text" name="name" placeholder="Name" required value={name} onChange={handleName}/>

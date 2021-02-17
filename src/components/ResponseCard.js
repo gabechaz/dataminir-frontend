@@ -8,10 +8,10 @@ function ResponseCard ({response}) {
     }
    const history = useHistory()
     return (
-      <div className="centered item">
-        <div class="ui olive animated fade centered button" tabindex="0" onClick={handleClick}>
+      <div className="ui centered card">
+        <div class="ui olive animated fade button" tabindex="0" onClick={handleClick}>
           <div class="visible content">{response.question}</div>
-          <div class="hidden content">{response.answer_count} responses</div>
+          <div class="hidden content">{response.answer_count <= 1 ? (`${response.answer_count} response`) : (`${response.answer_count} responses`)}</div>
         </div>
       </div>
     )
