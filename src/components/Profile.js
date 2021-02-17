@@ -3,7 +3,7 @@ import React from "react";
 function Profile({ currentUser }) {
 console.log(currentUser)
   return (
-    <div className="ui centered olive card">
+    <div className="ui centered olive card" id="profile">
   <div className="content">
     <div className="header">{currentUser.name}</div>
   </div>

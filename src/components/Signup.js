@@ -12,6 +12,7 @@ function Signup ({ onSubmit }) {
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
   const wallet = 0
+  
   const handleName = (event) => {
     setName(event.target.value)
   }
@@ -59,7 +60,7 @@ function Signup ({ onSubmit }) {
   }
 
   return (
-    <form className="ui form" onSubmit={handleSubmit}>
+    <form className="ui form" style={{padding: '25px'}} onSubmit={handleSubmit}>
       <div className="field">
         <label>*Name</label>
         <input type="text" name="name" placeholder="Name" required value={name} onChange={handleName}/>
@@ -96,7 +97,7 @@ function Signup ({ onSubmit }) {
         <label>Religion</label>
         <input type="text" name="Religion" placeholder="Religion" value={religion} onChange={handleReligion}/>
       </div>
-      <button className="ui brown button" type="submit">Signup</button>
+      <button className="ui olive button" type="submit">Signup</button>
     </form>
   )
 }

@@ -44,15 +44,34 @@ function QuestionStats ({activeQuestion, setActiveQuestion}) {
                 
         }, [])
     return (
-        
-        <div id='question-box'>
-            <h1 id='question'>{question}</h1>
-            <h3 className='answer'> {option1} {option_1_count}%</h3>
-            <h3 className='answer'> {option2} {100 - option_1_count}%</h3>
-            <h3 className='answer'>{answer_count} users answered this question</h3>
-            <h5>Price: {reward}</h5>
+      <div className="ui centered olive card">
+        <div className="content">
+          <div className="header">{question}</div>
         </div>
+        {/* <div className="content">
+          <h4 className="ui sub header">{option_1_count}% of users answered {option1}</h4>
+          <h4 className="ui sub header">{100 - option_1_count}% of users answered {option2}</h4>
+          <h4 className="ui sub header">{answer_count <= 1 ? (`${answer_count} user answered this question`) : (`${answer_count} users answered this question`)}</h4>
+        </div> */}
+        <div class="ui statistics" style={{margin: 'inherit'}}>
+          <div class="olive statistic">
+            <div class="value">{option_1_count}%</div>
+            <div class="label">of users answered {option1}</div>
+          </div>
+          <div class="olive statistic">
+            <div class="value">{100 - option_1_count}%</div>
+            <div class="label">of users answered {option2}</div>
+          </div>
+        </div>
+        <div className="content">
+          <div className="ui sub header">{answer_count <= 1 ? (`${answer_count} user answered this question`) : (`${answer_count} users answered this question`)}</div>
+        </div>
+        <div className="content">
+          <div className="ui sub header">REWARD: {reward}</div>
+        </div>
+      </div>
     )
 }
+
 
 export default QuestionStats

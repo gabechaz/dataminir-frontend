@@ -22,7 +22,7 @@ const Login = ({ onSubmit }) => {
   }
   
   return (
-    <form className="ui form" onSubmit={handleSubmit}>
+    <form className="ui form" style={{padding: '25px'}} onSubmit={handleSubmit}>
       <div className="field">
         <label>Username</label>
         <input type="text" name="username" placeholder="Username" value={username} onChange={handleUsername}/>
@@ -31,7 +31,7 @@ const Login = ({ onSubmit }) => {
         <label>Password</label>
         <input type="text" name="password" placeholder="Password" value={password} onChange={handlePassword}/>
       </div>
-      <button className="ui brown button" type="submit">Login</button>
+      <button className="ui olive button" type="submit">Login</button>
     </form>
   )
 

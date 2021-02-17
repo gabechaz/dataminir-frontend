@@ -74,8 +74,10 @@ function AddQuestion ( {onSubmit, setCurrentUser, currentUser} )  {
           
           <p>Cost: 50 points</p>
           <button className="ui button" type="submit">Add Question</button>
-        </form>) }
-        {isFormShown ? null: <button className="ui brown button" onClick = {handleIsFormShown}>Add A Question</button>}
+        </form>)}
+        <div style={{padding: '25px'}}>
+        {isFormShown ? null: <button className="ui olive button" onClick = {handleIsFormShown}>Add A Question</button>}
+        </div>
       </div>
     );
 }
