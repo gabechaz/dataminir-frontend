@@ -1,7 +1,7 @@
 import React from "react";
 
-function Profile({ currentUser, currentUserWallet }) {
-
+function Profile({ currentUser }) {
+console.log(currentUser)
   return (
     <div className="ui centered olive card">
   <div className="content">

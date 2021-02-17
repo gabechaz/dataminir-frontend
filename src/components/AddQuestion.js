@@ -1,26 +1,45 @@
 import React, { useState }from "react"; 
 import { useHistory } from "react-router-dom"; 
 
-function AddQuestion ( {onSubmit, currentUser} )  {
+function AddQuestion ( {onSubmit, setCurrentUser, currentUser} )  {
  
   const [question, setQuestion] = useState("")
   const [option1, setOption1] = useState("")
   const [option2, setOption2] = useState("")
-  const [reward, setReward] = useState("")
   const [isFormShown, setIsFormShown] = useState(false)
-
+  const creator_id = currentUser.id
+  const walletObj = {wallet: currentUser.wallet - 50}
+  const reward = 10
   const handleIsFormShown = () => {
     setIsFormShown((isFormShown) => !isFormShown);
   }
 
   const history = useHistory()
-
+  console.log(walletObj)
   const handleSubmit = (event) => {
     event.preventDefault()
-    const newQuestion = {question, option1, option2, reward}
+    fetch(`http://localhost:3000/users/${currentUser.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(walletObj),
+    })
+      .then((res) => res.json())
+      .then((data) => setCurrentUser ((currentUser) => {
+        console.log(data)
+        return (
+          {...currentUser, wallet: data.wallet}
+        )
+  
+      }) )
+    const newQuestion = {question, option1, option2, reward,creator_id}
     onSubmit(newQuestion)
     handleIsFormShown()
   }
+
+
 
   const handleQuestion = (event) => {
     setQuestion(event.target.value)
@@ -34,9 +53,7 @@ function AddQuestion ( {onSubmit, currentUser} )  {
     setOption2(event.target.value)
   }
 
-  const handleReward = (event) => {
-    setReward(event.target.value)
-  }
+
 
     return (
       <div>
@@ -54,10 +71,8 @@ function AddQuestion ( {onSubmit, currentUser} )  {
             <label>Option 2</label>
             <input type="text" name="answerB" placeholder="Option2" value={option2} onChange={handleOption2}/>
           </div>
-          <div className="field">
-            <label>Reward</label>
-            <input type="text" name="reward" placeholder="Reward" value={reward} onChange={handleReward}/>
-          </div>
+          
+          <p>Cost: 50 points</p>
           <button className="ui button" type="submit">Add Question</button>
         </form>) }
         {isFormShown ? null: <button className="ui brown button" onClick = {handleIsFormShown}>Add A Question</button>}
@@ -66,3 +81,5 @@ function AddQuestion ( {onSubmit, currentUser} )  {
 }
 
 export default AddQuestion
+
+

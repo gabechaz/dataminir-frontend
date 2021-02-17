@@ -24,8 +24,6 @@ function QuestionStats ({activeQuestion, setActiveQuestion}) {
     // )
 
 
-
-    
     const {question,
         option1,
         option2,
@@ -33,14 +31,20 @@ function QuestionStats ({activeQuestion, setActiveQuestion}) {
         option_1_count,
        answer_count}
         = activeQuestion
-
+    
+ 
+      
         useEffect(() => {
             fetch(`http://localhost:3000/questions/${id}`)
                 .then(r => r.json())
-                .then(data => setActiveQuestion(data))
+                .then(data => {
+                    setActiveQuestion(data)
+                    
+                })
                 
         }, [])
     return (
+        
         <div id='question-box'>
             <h1 id='question'>{question}</h1>
             <h3 className='answer'> {option1} {option_1_count}%</h3>

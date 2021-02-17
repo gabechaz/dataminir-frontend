@@ -53,8 +53,9 @@ function Signup ({ onSubmit }) {
   const handleSubmit = (event) => {
     event.preventDefault()
     const newSignup = {name, age, ethnicity, genderIdentity, politicalParty, location, religion, username, password, wallet}
+    console.log(password)
     onSubmit(newSignup)
-    history.push('/questions')
+   
   }
 
   return (
@@ -69,7 +70,7 @@ function Signup ({ onSubmit }) {
       </div>
       <div className="field">
         <label>*Password</label>
-        <input type="text" name="Password" placeholder="Password" value={password} onChange={handlePassword}/>
+        <input type="password" name="Password" placeholder="Password" value={password} onChange={handlePassword}/>
       </div>
       <div className="field">
         <label>Age</label>

@@ -13,6 +13,7 @@ function ResponseCard ({response}) {
         <div>
             <button onClick={handleClick}>{response.question}</button>
         </div>
+   
     )
 }
 

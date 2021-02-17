@@ -1,26 +1,38 @@
 import React, { useState, useEffect } from 'react'
 import ResponseCard from './ResponseCard.js'
 function ResponseList({currentUser}) {
-    console.log(currentUser)
-    const [uIQ, setUIQ] = useState(currentUser)
-    const [userQuestions, setUserQuestions] = useState(uIQ.questions)
-
-   const responses =  userQuestions.map((response) => { 
-        return (
-            <ResponseCard  response = {response} />
-        )
-    })
+    const [userQuestions, setUserQuestions] = useState(currentUser.questions)
+    const [responseCards, setResponseCards] = useState(null)
 
 useEffect(() => {
-    setUIQ(currentUser)
-//     console.log(uIQ)
-    fetch(`http://localhost:3000/users/${uIQ.id}`)
+    setUserQuestions(currentUser)
+    fetch(`http://localhost:3000/users/${currentUser.id}`)
       .then((response) => response.json())
-      .then((userData) => console.log(userData.questions))
+      .then((userData) => setUserQuestions(userData.questions))
   }, [])
+
+
+
+  useEffect (() => {
+
+  const responses =  userQuestions.map((response) => { 
+      console.log('gotcha')
+    return (
+        <ResponseCard  response = {response} />
+    )
+})
+    setResponseCards(responses)
+  }, [])
+
+
+
+
+
+
+
 return (
 <div>
-    {responses}
+    {responseCards}
 </div>
     
 )

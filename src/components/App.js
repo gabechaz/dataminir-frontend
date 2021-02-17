@@ -15,7 +15,6 @@ function App() {
   const history = useHistory()
   // State Variables
   const [currentUser, setCurrentUser] = useState(null);
-  const [currentUserWallet, setCurrentUserWallet] = useState(null)
   const [questions, setQuestions] = useState([]);
   const [users, setUsers] = useState([]);
   const [activeQuestion,setActiveQuestion] = useState(" ")
@@ -36,10 +35,19 @@ function App() {
       body: JSON.stringify(newSignup),
     })
       .then((r) => r.json())
-      .then((newSignup) => setUsers([...users, newSignup]));
+      .then((newSignup) =>{ 
+        const {user, token} = newSignup
+        localStorage.setItem("token", token )
+      setCurrentUser(user)
+        setUsers([...users, user])
+        history.push('/users/profile')}
+        )
+       
   };
   
   const addNewQuestion = (newQuestion) => {
+    console.log(newQuestion)
+    
     fetch("http://localhost:3000/questions", {
       method: "POST",
       headers: {
@@ -49,34 +57,58 @@ function App() {
     })
       .then((r) => r.json())
       .then((newQuestion) => {
+        console.log(newQuestion)
         setQuestions([...questions, newQuestion])
         history.push(`/surveys/${newQuestion.id}`)
       } )}
 
   const addNewCurrentUser = (newCurrentUser) => {
     fetch("http://localhost:3000/login", {
-      method: "POST"
-    })
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        'Accept': "application/json"},
+        body: JSON.stringify(newCurrentUser)
+      }
+    )
       .then((r) => r.json())
       .then((newUser) => {
-        setCurrentUser(newUser)
-        setCurrentUserWallet(newUser.wallet)
+        console.log(newUser)
+        if (newUser.errors){
+          console.log(newUser.errors)
+        } else {
+          const {user, token} = newUser
+          console.log(newUser)
+          localStorage.setItem("token", token )
+        setCurrentUser(user)
+        history.push('/questions')}
+
     });
   };
 
   const logout = () => {
+    localStorage.removeItem("token")
     fetch("http://localhost:3000/logout", {
       method: "POST"
     })
       .then((User) => {
         setCurrentUser(null)
+        console.log('logged out')
     });
   };
 
   useEffect(() => {
-    fetch("http://localhost:3000/me")
+    const token = localStorage.getItem("token") 
+    
+    fetch("http://localhost:3000/me", {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
       .then((response) => response.json())
-      .then((userData) => { setCurrentUser(userData)})
+      .then((userData) => { 
+        if (userData.id)
+        {setCurrentUser(userData)}})
   }, [])
 
 
@@ -86,11 +118,11 @@ function App() {
       <NavBar currentUser={currentUser} handleLogout={logout} />
       <Switch>
         <Route exact path="/users/profile">
-        {currentUser &&  <Profile currentUserWallet = {currentUserWallet} currentUser={currentUser}/>}
+        {currentUser &&  <Profile  currentUser={currentUser}/>}
         </Route>
         <Route exact path="/questions">
-          <AddQuestion currentUser = {currentUser} onSubmit={addNewQuestion} />
-          <QuestionList queryArr={questions} />
+          {currentUser && <AddQuestion setCurrentUser = {setCurrentUser} currentUser = {currentUser} onSubmit={addNewQuestion} />}
+          {questions && <QuestionList queryArr={questions} />}
         </Route>
         <Route exact path="/users/signup">
           <Signup onSubmit={addNewUser} />

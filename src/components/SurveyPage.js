@@ -10,19 +10,16 @@ function SurveyPage({ currentUser, setCurrentUser, activeQuestion, setActiveQues
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(activeQuestion)
-    setActiveQuestion({id: id})
-    console.log(activeQuestion)
+
+
     const answerObj = {
       user_id: currentUser.id,
       question_id: id,
       response: selectedOption,
     };
-    console.log(currentUser.wallet, questionObj.reward);
     const walletObj = {
       wallet: currentUser.wallet + questionObj.reward,
     };
-    console.log(walletObj);
     fetch(`http://localhost:3000/users/${currentUser.id}`, {
       method: "PATCH",
       headers: {
@@ -46,9 +43,13 @@ function SurveyPage({ currentUser, setCurrentUser, activeQuestion, setActiveQues
       },
       body: JSON.stringify(answerObj),
     })
+  .then(res => res.json())
+  .then( data => {
+    console.log(data)
     history.push(`/questions/${id}`)
-    console.log(activeQuestion)
-    // setNSendQuestion(activeQuestion.id)
+    setNSendQuestion(answerObj.question_id)
+ })
+    
   }
 
     function setNSendQuestion (id) {

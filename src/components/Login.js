@@ -19,7 +19,6 @@ const Login = ({ onSubmit }) => {
     event.preventDefault()
     const newCurrentUser = {username, password}
     onSubmit(newCurrentUser)
-    history.push('/questions')
   }
   
   return (
