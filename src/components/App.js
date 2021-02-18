@@ -32,7 +32,7 @@ function App() {
     })
       .then((response) => response.json())
       .then((userData) => { 
-        if (userData.id)
+        if (userData?.id)
         {setCurrentUser(userData)}})
   }, [])
 
