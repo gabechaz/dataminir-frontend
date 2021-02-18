@@ -3,10 +3,10 @@ import QuestionStats from "./QuestionStats.js";
 import SurveyPage from "./SurveyPage.js";
 import QuestionCard from "./QuestionCard.js";
 
-const QuestionList = ({ queryArr }) => {
+const QuestionList = ({ queryArr, currentUser }) => {
   const [questionsIndex, setQuestionsIndex] = useState(0)
   const questions = queryArr.map((query) => {
-    return <QuestionCard key={query.id} questionStats={query} />;
+    return <QuestionCard currentUser={currentUser} key={query.id} questionStats={query} />;
   });
 
   const handleBack = () => {

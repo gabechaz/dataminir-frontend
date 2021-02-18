@@ -18,7 +18,8 @@ function App() {
   const [questions, setQuestions] = useState([]);
   const [users, setUsers] = useState([]);
   const [activeQuestion,setActiveQuestion] = useState(" ")
-   const [userQuestions, setUserQuestions] = useState([])
+  const [userQuestions, setUserQuestions] = useState([])
+  
   // Fetch Requests
 
 
@@ -134,7 +135,7 @@ function App() {
         </Route>
         <Route exact path="/questions">
           {currentUser && <AddQuestion setCurrentUser = {setCurrentUser} currentUser = {currentUser} onSubmit={addNewQuestion} />}
-          {questions && <QuestionList queryArr={questions} />}
+          {questions && <QuestionList currentUser={currentUser} queryArr={questions} />}
         </Route>
         <Route exact path="/users/signup">
           <Signup onSubmit={addNewUser} />
