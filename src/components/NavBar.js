@@ -7,7 +7,7 @@ return (
   <div className="ui five item menu">
     <Link className="item olive header" to='/' exact='true' >
     <a className="active item olive header">Dataminr
-    <i class="gem outline icon"></i>
+    <i className="gem outline icon"></i>
     </a>
     </Link>
     <Link className="item olive header" to='/questions' exact='true' > Questions </Link>

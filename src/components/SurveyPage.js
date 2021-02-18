@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-function SurveyPage({ currentUser, setCurrentUser, activeQuestion, setActiveQuestion, userQuestions, setUserQuestions }) {
+import QuestionStats from "./QuestionStats";
+function SurveyPage({
+  currentUser,
+  setCurrentUser,
+  activeQuestion,
+  setActiveQuestion,
+  userQuestions,
+  setUserQuestions,
+}) {
   const [questionObj, setQuestionObj] = useState({});
   const { id } = useParams();
   const { reward, option1, option2, question, creator } = questionObj;
@@ -10,7 +18,6 @@ function SurveyPage({ currentUser, setCurrentUser, activeQuestion, setActiveQues
 
   function handleSubmit(e) {
     e.preventDefault();
-
 
     const answerObj = {
       user_id: currentUser.id,
@@ -29,11 +36,15 @@ function SurveyPage({ currentUser, setCurrentUser, activeQuestion, setActiveQues
       body: JSON.stringify(walletObj),
     })
       .then((res) => res.json())
-      .then((data) => setCurrentUser ((currentUser) => {
-        return (
-          {...currentUser, wallet: data.wallet}
-        )
-      }) )
+      .then((data) =>
+        setCurrentUser((currentUser) => {
+          return {
+            ...currentUser,
+            wallet: data.wallet,
+            questions: [...currentUser.questions, { id: parseInt(id) }],
+          };
+        })
+      );
 
     fetch("http://localhost:3000/answers", {
       method: "POST",
@@ -43,23 +54,23 @@ function SurveyPage({ currentUser, setCurrentUser, activeQuestion, setActiveQues
       },
       body: JSON.stringify(answerObj),
     })
-  .then(res => res.json())
-  .then( data => {
-    console.log(data)
-    history.push(`/questions/${id}`)
-    setNSendQuestion(answerObj.question_id)
- })
-    
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        history.push(`/questions/${id}`);
+        setNSendQuestion(answerObj.question_id);
+      });
   }
 
-    function setNSendQuestion (id) {
-      fetch(`http://localhost:3000/questions/${id}`)
-      .then(res => res.json())
-      .then(question => {setActiveQuestion(question)
+  function setNSendQuestion(id) {
+    fetch(`http://localhost:3000/questions/${id}`)
+      .then((res) => res.json())
+      .then((question) => {
+        setActiveQuestion(question);
         // setUserQuestions(...userQuestions, question)
-      history.push(`/questions/${id}`);
-      })
-    }
+        history.push(`/questions/${id}`);
+      });
+  }
 
   useEffect(() => {
     fetch(`http://localhost:3000/questions/${id}`)
