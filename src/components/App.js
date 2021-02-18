@@ -69,18 +69,19 @@ function App() {
   };
   
   const addNewQuestion = (newQuestion) => {
-    console.log(newQuestion)
+    const token = localStorage.getItem("token") 
     
     fetch("http://localhost:3000/questions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`
       },
       body: JSON.stringify(newQuestion),
     })
       .then((r) => r.json())
       .then((newQuestion) => {
-        console.log(newQuestion)
+        console.log('new question', newQuestion)
         setQuestions([...questions, newQuestion])
         history.push(`/surveys/${newQuestion.id}`)
       } )}

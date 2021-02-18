@@ -15,7 +15,7 @@ function AddQuestion ( {onSubmit, setCurrentUser, currentUser} )  {
   }
 
   const history = useHistory()
-  console.log(walletObj)
+
   const handleSubmit = (event) => {
     event.preventDefault()
     fetch(`http://localhost:3000/users/${currentUser.id}`, {
