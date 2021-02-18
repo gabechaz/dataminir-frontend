@@ -5,9 +5,11 @@ function NavBar ({currentUser, handleLogout}) {
 
 return (
   <div className="ui five item menu">
+    <Link className="item olive header" to='/' exact='true' >
     <a className="active item olive header">Dataminr
     <i class="gem outline icon"></i>
     </a>
+    </Link>
     <Link className="item olive header" to='/questions' exact='true' > Questions </Link>
     <Link className="item olive header" to='/responses' exact='true'> Survey Responses </Link>
     {currentUser ?  <Link  className="item olive header" to='/users/profile' exact='true' > Profile </Link>  : <Link className="item" to='/users/signup' exact='true' > Signup </Link> }

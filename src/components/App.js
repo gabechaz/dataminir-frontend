@@ -9,6 +9,7 @@ import SurveyPage from './SurveyPage.js'
 import ResponseList from './ResponseList.js'
 import QuestionStats from './QuestionStats.js'
 import NavBar from './NavBar'
+import Home from './Home.js'
 import { useHistory } from "react-router-dom";
 
 function App() {
@@ -142,6 +143,9 @@ function App() {
         <Route exact path ='/questions/:id' >
        {activeQuestion && <QuestionStats setActiveQuestion = {setActiveQuestion} activeQuestion = {activeQuestion} />}
         </Route>
+        {/* <Route exact path = '/'>
+          <Home />
+        </Route> */}
         <Route exact path='/users/login'>
           <Login  setCurrentUser={setCurrentUser} onSubmit={addNewCurrentUser}/>
         </Route>

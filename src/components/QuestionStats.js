@@ -15,7 +15,7 @@ function QuestionStats ({activeQuestion, setActiveQuestion}) {
     
    
     const { id } = useParams()
-    const [activeDemo, setActiveDemo] = useState(null)
+    const [activeDemo, setActiveDemo] = useState('users')
     // useEffect (() => {
     //     fetch(`http://localhost:3000/questions/${id}`)
     // .then( res => res.json())
