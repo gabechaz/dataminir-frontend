@@ -3,7 +3,7 @@ import ResponseCard from './ResponseCard.js'
 function ResponseList({currentUser, userQuestions, setUserQuestions}) {
 
       useEffect(() => {
-    fetch(`http://localhost:3000/users/${currentUser.id}`)
+    fetch(`https://dataminr-backend.herokuapp.com/users/${currentUser.id}`)
       .then((response) => response.json())
       .then((userData) => { setUserQuestions(userData.questions)})
   }, [])

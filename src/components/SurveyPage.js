@@ -27,7 +27,7 @@ function SurveyPage({
     const walletObj = {
       wallet: currentUser.wallet + questionObj.reward,
     };
-    fetch(`http://localhost:3000/users/${currentUser.id}`, {
+    fetch(`https://dataminr-backend.herokuapp.com/users/${currentUser.id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -46,7 +46,7 @@ function SurveyPage({
         })
       );
 
-    fetch("http://localhost:3000/answers", {
+    fetch("https://dataminr-backend.herokuapp.com/answers", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -63,7 +63,7 @@ function SurveyPage({
   }
 
   function setNSendQuestion(id) {
-    fetch(`http://localhost:3000/questions/${id}`)
+    fetch(`https://dataminr-backend.herokuapp.com/questions/${id}`)
       .then((res) => res.json())
       .then((question) => {
         setActiveQuestion(question);
@@ -73,7 +73,7 @@ function SurveyPage({
   }
 
   useEffect(() => {
-    fetch(`http://localhost:3000/questions/${id}`)
+    fetch(`https://dataminr-backend.herokuapp.com/questions/${id}`)
       .then((r) => r.json())
       .then((data) => setQuestionObj(data));
   }, []);

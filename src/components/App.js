@@ -26,7 +26,7 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token") 
-    fetch("http://localhost:3000/me", {
+    fetch("https://dataminr-backend.herokuapp.com/me", {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -40,19 +40,19 @@ function App() {
 
 
   // useEffect(() => {
-  //   fetch(`http://localhost:3000/users/${currentUser.id}`)
+  //   fetch(`https://dataminr-backend.herokuapp.com/users/${currentUser.id}`)
   //     .then((response) => response.json())
   //     .then((userData) => { setUserQuestions(userData.questions)})
   // }, [])
   
   useEffect(() => {
-    fetch("http://localhost:3000/questions")
+    fetch("https://dataminr-backend.herokuapp.com/questions")
       .then((response) => response.json())
       .then((questionData) => { setQuestions(questionData)})
   }, [])
 
   const addNewUser = (newSignup) => {
-    fetch("http://localhost:3000/users", {
+    fetch("https://dataminr-backend.herokuapp.com/users", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +73,7 @@ function App() {
   const addNewQuestion = (newQuestion) => {
     const token = localStorage.getItem("token") 
     
-    fetch("http://localhost:3000/questions", {
+    fetch("https://dataminr-backend.herokuapp.com/questions", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -89,7 +89,7 @@ function App() {
       } )}
 
   const addNewCurrentUser = (newCurrentUser) => {
-    fetch("http://localhost:3000/login", {
+    fetch("https://dataminr-backend.herokuapp.com/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -114,7 +114,7 @@ function App() {
 
   const logout = () => {
     localStorage.removeItem("token")
-    fetch("http://localhost:3000/logout", {
+    fetch("https://dataminr-backend.herokuapp.com/logout", {
       method: "POST"
     })
       .then((user) => {

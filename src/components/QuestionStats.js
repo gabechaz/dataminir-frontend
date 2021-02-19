@@ -17,7 +17,7 @@ function QuestionStats ({activeQuestion, setActiveQuestion}) {
     const { id } = useParams()
     const [activeDemo, setActiveDemo] = useState('users')
     // useEffect (() => {
-    //     fetch(`http://localhost:3000/questions/${id}`)
+    //     fetch(`https://dataminr-backend.herokuapp.com/questions/${id}`)
     // .then( res => res.json())
     // .then(question => setActiveQuestion(question))
     // }, []
@@ -35,7 +35,7 @@ function QuestionStats ({activeQuestion, setActiveQuestion}) {
  
       
         useEffect(() => {
-            fetch(`http://localhost:3000/questions/${id}`)
+            fetch(`https://dataminr-backend.herokuapp.com/questions/${id}`)
                 .then(r => r.json())
                 .then(data => {
                     setActiveQuestion(data)

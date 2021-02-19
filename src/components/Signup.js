@@ -11,7 +11,7 @@ function Signup ({ onSubmit }) {
   const [religion, setReligion] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-  const wallet = 0
+  const wallet = 50
   
   const handleName = (event) => {
     setName(event.target.value)

@@ -10,7 +10,7 @@ function ResponseCard ({response}) {
 
 
     function deleteAnswer (e) {
-      fetch(`http://localhost:3000/answers/${response.id}`, {
+      fetch(`https://dataminr-backend.herokuapp.com/answers/${response.id}`, {
         method: 'DELETE'
       })
       .then(data => {
