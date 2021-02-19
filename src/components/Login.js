@@ -29,7 +29,7 @@ const Login = ({ onSubmit }) => {
       </div>
       <div className="field">
         <label>Password</label>
-        <input type="text" name="password" placeholder="Password" value={password} onChange={handlePassword}/>
+        <input type="password" name="password" placeholder="Password" value={password} onChange={handlePassword}/>
       </div>
       <button className="ui olive button" type="submit">Login</button>
     </form>
