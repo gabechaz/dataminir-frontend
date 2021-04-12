@@ -131,7 +131,7 @@ function App() {
     <div className="App">
       <NavBar currentUser={currentUser} handleLogout={logout} />
       <Switch>
-      <Route exact path="">
+      <Route exact path="/">
           <Signup onSubmit={addNewUser} />
         </Route>
         <Route exact path="/users/profile">
