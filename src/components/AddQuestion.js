@@ -61,15 +61,15 @@ function AddQuestion ( {onSubmit, setCurrentUser, currentUser} )  {
        (<form className="ui form" onSubmit={handleSubmit}>
           <div className="field">
             <label>Question</label>
-            <input type="text" name="query" placeholder="Question" value={question} onChange={handleQuestion}/>
+            <input autocomplete="off" type="text" name="query" placeholder="Question" value={question} onChange={handleQuestion}/>
           </div>
           <div className="field">
             <label>Option 1</label>
-            <input type="text" name="answerA" placeholder="Option1" value={option1} onChange={handleOption1}/>
+            <input autocomplete="off" type="text" name="answerA" placeholder="Option1" value={option1} onChange={handleOption1}/>
           </div>
           <div className="field">
             <label>Option 2</label>
-            <input type="text" name="answerB" placeholder="Option2" value={option2} onChange={handleOption2}/>
+            <input autocomplete="off" type="text" name="answerB" placeholder="Option2" value={option2} onChange={handleOption2}/>
           </div>
           
           <p>Cost: 50 points</p>

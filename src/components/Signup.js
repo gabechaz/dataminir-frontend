@@ -63,39 +63,39 @@ function Signup ({ onSubmit }) {
     <form className="ui form" style={{padding: '25px'}} onSubmit={handleSubmit}>
       <div className="field">
         <label>*Name</label>
-        <input type="text" name="name" placeholder="Name" required value={name} onChange={handleName}/>
+        <input autocomplete="off" type="text" name="name" placeholder="Name" required value={name} onChange={handleName}/>
       </div>
       <div className="field">
         <label>*Username</label>
-        <input type="text" name="Username" placeholder="Username" required value={username} onChange={handleUsername}/>
+        <input autocomplete="off" type="text" name="Username" placeholder="Username" required value={username} onChange={handleUsername}/>
       </div>
       <div className="field">
         <label>*Password</label>
-        <input type="password" name="Password" placeholder="Password" value={password} onChange={handlePassword}/>
+        <input autocomplete="off" type="password" name="Password" placeholder="Password" value={password} onChange={handlePassword}/>
       </div>
       <div className="field">
         <label>Age</label>
-        <input type="text" name="Age" placeholder="Age" value={age} onChange={handleAge}/>
+        <input autocomplete="off" type="text" name="Age" placeholder="Age" value={age} onChange={handleAge}/>
       </div>
       <div className="field">
         <label>Ethnicity</label>
-        <input type="text" name="Ethnicity" placeholder="Ethnicity" value={ethnicity} onChange={handleEthnicity}/>
+        <input autocomplete="off" type="text" name="Ethnicity" placeholder="Ethnicity" value={ethnicity} onChange={handleEthnicity}/>
       </div>
       <div className="field">
         <label>Gender Identity</label>
-        <input type="text" name="Gender Identity" placeholder="Gender Identity" value={genderIdentity} onChange={handleGenderIdentity}/>
+        <input autocomplete="off" type="text" name="Gender Identity" placeholder="Gender Identity" value={genderIdentity} onChange={handleGenderIdentity}/>
       </div>
       <div className="field">
         <label>Political Party</label>
-        <input type="text" name="Politcal Party" placeholder="Political Party" value={politicalParty} onChange={handlePoliticalParty}/>
+        <input autocomplete="off" type="text" name="Politcal Party" placeholder="Political Party" value={politicalParty} onChange={handlePoliticalParty}/>
       </div>
       <div className="field">
         <label>Location</label>
-        <input type="text" name="Location" placeholder="Location" value={location} onChange={handleLocation}/>
+        <input autocomplete="off" type="text" name="Location" placeholder="Location" value={location} onChange={handleLocation}/>
       </div>
       <div className="field">
         <label>Religion</label>
-        <input type="text" name="Religion" placeholder="Religion" value={religion} onChange={handleReligion}/>
+        <input autocomplete="off" type="text" name="Religion" placeholder="Religion" value={religion} onChange={handleReligion}/>
       </div>
       <button className="ui olive button" type="submit">Signup</button>
     </form>
